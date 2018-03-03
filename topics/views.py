@@ -13,10 +13,9 @@ def topic_list(request):
     for g in glist:
         tlist.append(get_topics_ranked(g))
     context = {
-            'glist':glist,
-            'tlist':tlist,
+            'topic_list':zip(glist,tlist),
             }
-    return render(request, 'topics/list.html', context)
+    return render(request, 'list.html', context)
 
 def vote(request, topic_id, kind):
     if request.method == 'POST':

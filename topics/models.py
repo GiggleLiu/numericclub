@@ -28,11 +28,21 @@ class Vote(models.Model):
         -1: user dislike topic
         0: user like to give a talk
     '''
+    KIND_CHOICES = ((0, 'can talk'), (1, 'like'), (-1,'dislike'))
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    kind = models.IntegerField(default=0)
+    kind = models.IntegerField(choices=KIND_CHOICES)
 
 def get_topics_ranked(genre):
     topics = genre.topic_set.all()
     sorted(topics, key=lambda t:-t.ranking())
     return topics
+
+def vote(user, topic, kind):
+    vlist = Vote.objects.filter(user=user, topic=topic, kind=kind)
+    if len(vlist) == 0:
+        v = Vote(user=user, topic=topic, kind=kind)
+        v.save()
+        return v
+    else:
+        return None

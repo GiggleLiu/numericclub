@@ -17,7 +17,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
     path('archive/', views.archive, name='archive'),
+    path('current/', views.current, name='current'),
     path('<int:talk_id>/', views.detail, name='detail'),
 ]

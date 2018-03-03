@@ -1,0 +1,38 @@
+<!doctype html>
+{%extends 'base.html'%}
+{% load i18n static bootstrap%}
+{%block script%}
+<link rel="stylesheet" href="{%static 'css/datepicker3.css'%}">
+<script src="{%static 'js/bootstrap-datepicker.js'%}"></script>
+<script src="{%static 'js/bootstrap-datepicker.zh-CN.js'%}"></script>
+{%endblock%}
+{%block content%}
+<div class="container" style="min-height:500px;">
+    <h1>{%if update%}{%trans "modify"%}{%else%}{%trans "basic information"%}{%endif%}</h1>
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-8 col-xs-12">
+            <div id="update-information">
+                <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{%if update%}/being/being_update/{%else%}/being/register_step2/{%endif%}">
+		    	<fieldset>
+                    {{form.truename|bootstrap_horizontal}}
+                    {{form.description|bootstrap_horizontal}}
+                    {{form.avatar|bootstrap_horizontal}}
+			        <div class="form-group">
+			          <!-- Button -->
+			        	<div class="pull-right">
+                            {%if update%}
+                            <a title="" href="/being/user_detail/{{user.id}}" class="btn btn-default">{%trans "cancel"%}</a>
+                            {%else%}
+                            <a title="" href="/login/" class="btn btn-default">{%trans "skip"%}</a>
+                            {%endif%}
+                            <button type="submit" class="btn btn-primary">{%trans "save"%}</button>
+			            </div>
+			        </div>
+			        
+				</fieldset>
+			</form>
+            </div>
+		</div>
+	</div>
+</div>
+{%endblock%}

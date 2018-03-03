@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%load i18n static%}
+{%block content%}
+{%for g, topics in topic_list%}
+    {{g}}
+    {% if topics %}
+        <ul>
+        {% for t in topics %}
+        <li>{{t}}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No topics are available.</p>
+    {% endif %}
+{% endfor %}
+{%endblock%}

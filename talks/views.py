@@ -1,14 +1,22 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 
-from .model import Talk
+from .models import Talk, get_current_talk
 
 # Create your views here.
 
-def archive(talk_id):
+def archive(request):
     talk_list = Talk.objects.all()
-    return render(request, 'talks/archive.html', {'talk_list':talk_list})
+    return render(request, 'archive.html', {'talk_list':talk_list})
 
-def detail(talk_id):
-    talk = get_object_or_404()
-    return render(request, 'talks/detail.html', {'talk':talk})
+def current(request):
+    talk = get_current_talk()
+    if talk is not None:
+        return render(request, 'detail.html', {'talk':talk})
+    else:
+        # no talk page.
+        return render(request, 'notalk.html')
+
+def detail(request, talk_id):
+    talk = get_object_or_404(Talk, pk=talk_id)
+    return render(request, 'detail.html', {'talk':talk})

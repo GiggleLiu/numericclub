@@ -1,0 +1,32 @@
+.video-normal{
+	width:100%;
+}
+.video-fullscreen{
+	overflow-x: hidden;
+	overflow-y: hidden;
+	width:100%;
+	z-index:2000;
+	position:fixed;
+	left:0px;
+	top:0px;
+}
+.div-talk{
+	position:fixed;
+	bottom:0px;
+	z-index:2001;
+	margin:0 auto;
+	width:100%;
+	text-align:center;
+}
+.flyfont{
+	font:'微软雅黑'; 
+	color:#FFF;font-size:24px; 
+	-moz-text-shadow:2px 2px 3px #555;  
+	-webkit-text-shadow:2px 2px 3px #555;  
+	text-shadow:2px 2px 3px #555;  
+}
+.flydiv{
+	position:fixed;
+	z-index:2002;
+	width:500px;
+}
