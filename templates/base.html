@@ -1,0 +1,180 @@
+{% load i18n static %}
+<!doctype html>
+<html>
+<head>
+    <title>
+    {%block title%}{%endblock%}
+    </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+    <!--<link href='http://www.youziku.com/webfont/CSS/0441409883046bd709ba74dea0ce7d27' rel='stylesheet' type='text/css'/>-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/global.css'%}">
+    	<script type="text/javascript" src="{% static 'js/jquery.min.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js'%}"></script>
+	<script type="text/javascript" src="{% static 'js/global.js'%}"></script>
+	<link rel="shortcut icon" href="{%static 'img/web/favicon.ico'%}" type="image/x-icon" />
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="{% static 'js/html5shiv.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/respond.min.js'%}"></script>
+<![endif]-->
+    {%block script%}{%endblock%}
+</head>
+
+<body style="{%block bodystyle%}{%endblock%}">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+	    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	    </button>
+    <a class="navbar-brand" href="/">阿金和辣辣星球</a>
+    </div>
+
+  	<!-- Collect the nav links, forms, and other content for toggling -->
+  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    	<ul class="nav navbar-nav" id="nav1-ul">
+            {%if user.is_authenticated%}
+            <li class="{%block class-nav-garden%}{%endblock%}"><a href="/being/lover/">找{%ifequal user.username 'ajin'%}笨辣辣{%else%}坏阿金{%endifequal%}玩</a></li>
+            <li class="{%block class-nav-law%}{%endblock%}"><a href="{% url 'law'%}">大法院</a></li>
+            {%endif%}
+            <li class="{%block class-nav-movie%}{%endblock%}"><a href="/movie/">你推我荐</a></li>
+            <li class="{%block class-nav-history%}{%endblock%}"><a href="/history/">历史</a></li>
+    	</ul>
+        {%block userpanel%}
+            {%if not user.is_authenticated%}
+            <!--
+            <ul class="nav navbar-nav navbar-right">
+	            <li>
+                <a href="#" onclick="$('#modal-login').modal('show')">
+          	            <span class="glyphicon glyphicon-user" style="font-size: 1.2em;"></span>
+                        <span class="small-grey">登陆{{king}}</span>
+                    </a>
+                </li>
+	            <li>
+                <a href="#" onclick="$('#modal-login').modal('show')">
+          	            <span class="glyphicon glyphicon-user" style="font-size: 1.2em;"></span>
+                        <span class="small-grey">登陆{{queen}}</span>
+                    </a>
+                </li>
+            </ul>-->
+            {%else%}
+	        <ul class="nav navbar-nav navbar-right">
+	      	    <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding:15px;">
+                    <span class="glyphicon glyphicon-globe {%ifnotequal noticestatus.0 0%}text-danger{%else%} {%ifnotequal noticestatus.1 0%}text-danger{%endifnotequal%}{%endifnotequal%}" style="font-size: 1.2em;"></span>
+          		  	    政务
+          		  	    <span class="caret"></span>
+              	    </a>
+              	    <ul class="dropdown-menu">
+                        <li><a href="/country/clause_audit/" target="content">审批法律和违纪【<span class="{%if noticestatus.0%}text-danger{%endif%}">{{noticestatus.0}}</span>】</a></li>
+                        <li><a href="/notice/1/" target="content">重要通知【<span class="{%if noticestatus.1%}text-danger{%endif%}">{{noticestatus.1}}</span>】</a></li>
+              	    </ul>
+                </li>
+	      	    <li class="dropdown">
+                <a href="{%url 'login'%}" class="dropdown-toggle" data-toggle="dropdown">
+          		  	    <span class="glyphicon glyphicon-user" style="font-size: 1.2em;"></span>
+          		  	    <span class="small-grey">个人面板</span>
+          		  	    <b class="caret"></b>
+              	    </a>
+              	    <ul class="dropdown-menu">
+                        <li><a href="{% url 'logout'%}" id="logout">注销</a></li>
+                        <li><a href="/being/user_detail/{{user.id}}/" target="content">个人资料</a></li>
+              	    </ul>
+                </li>
+	        </ul>
+            {%endif%}
+        {%endblock%}
+  	</div><!-- /.navbar-collapse -->
+</nav>
+<div id="error-block">
+{%if error%}
+<div class="alert alert-danger" role="alert">{{error}}<a href="#" class="close" data-dismiss="alert">&times;</a></div>
+{%endif%}
+</div>
+
+{%if info%}
+<div class="alert alert-info" role="alert">{{info}}<a href="#" class="close" data-dismiss="alert">&times;</a></div>
+{%endif%}
+
+<div id="content-wrap">
+{%block content%}
+{%endblock%}
+</div>
+<!--Footer Block-->
+<div style="margin-top: 100px;" class="footer">
+<div class="bg-info text-primary" style="padding:20px;">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5 class="text-muted">关于网站</h5>
+					</li>
+                    <li><a href="/help/planet/">了解这个星球的起源</a></li>
+                    <li><a href="/help/site/">关于网站</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="list-unstyled">
+					<li>
+						<h5 class="text-muted">帮助</h5>
+					</li>
+                    <li><a href="#" data-toggle="modal" data-target="#modal-feedback">建议反馈</a></li>
+                    <li><a href="mailto:{{king.user.email}}">联系作者</a></li>
+                    <li><a href="/help/index/">网站使用帮助</a></li>
+				</ul>
+			</div>
+            <div class="col-md-3">
+				<ul class="list-unstyled">
+                    <li class="col-md-6"><a href="{%static 'img/web/2dcode-adv.png'%}" target="_new" class="thumbnail"><img src="{%static 'img/web/2dcode-adv.png'%}"></a></li>
+				</ul>
+			</div>
+		</div>
+        <div class="row"><small class="col-md-12 text-muted">&copy;2014-2024 Jinguo Leo and Lala Yang. All Rights Reserved.</small>
+	</div>
+</div>
+</div>
+    
+<div class="modal fade" id="modal-feedback" tabindex="-1" role="dialog" aria-labelledby="feedback" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">反馈意见</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="modal-form" id="form-feedback" method="POST" action='/notice/advice/'>
+                    <div class="form-group">
+                        <label for="area-feedback">您的建议或遇到的问题</label>
+                        <textarea class="form-control" id="area-feedback" placeholder="欢迎反馈，最好能留下联系方式哦。" name="content" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-9">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" id="submit-feedback">确定</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="http://www.youziku.com/UserDownFile/webfont.js"></script> 
+<script type="text/javascript">
+    WebFont.load({
+        custom: {
+            urls: ['http://www.youziku.com/webfont/CSS/0bbb59d0feea5e1780aa90d08623d5bb']
+        }
+        }); 
+</script>
+</html>
