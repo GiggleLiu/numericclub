@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{%load i18n static%}
+{%block content%}
+<div class="container" style="min-height:500px;">
+    <h1>{%if update%}{%trans "modify"%}{%else%}{%trans "List of Topics"%}{%endif%}</h1>
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-8 col-xs-12">
+{%for g, topics in topic_list%}
+    {{g}}
+    <ul>
+    {% for t, like, talk in topics %}
+    <li>{{t.link|safe}}&nbsp;&nbsp;
+        <a class="Button VoteButton VoteButton--up" aria-label="upvote" type="button" data-reactid="145" href="/topics/{{t.id}}/vote/{{1}}/">
+            <svg viewBox="0 0 20 18" class="" style="height:16px;width:9px;" width="9" height="16" aria-hidden="true" data-reactid="146"><title data-reactid="147"></title><g data-reactid="148"><path d="M0 15.243c0-.326.088-.533.236-.896l7.98-13.204C8.57.57 9.086 0 10 0s1.43.57 1.784 1.143l7.98 13.204c.15.363.236.57.236.896 0 1.386-.875 1.9-1.955 1.9H1.955c-1.08 0-1.955-.517-1.955-1.9z"/></g></svg>
+            {{like}}
+        </a>
+        <a class="Button VoteButton VoteButton--down" aria-label="downvote" type="button" data-reactid="150" href="/topics/{{t.id}}/vote/{{2}}/">
+            <svg viewBox="0 0 20 18" class="" style="height:16px;width:9px;" width="9" height="16" aria-hidden="true" data-reactid="151"><title data-reactid="152"></title><g data-reactid="153"><path d="M0 15.243c0-.326.088-.533.236-.896l7.98-13.204C8.57.57 9.086 0 10 0s1.43.57 1.784 1.143l7.98 13.204c.15.363.236.57.236.896 0 1.386-.875 1.9-1.955 1.9H1.955c-1.08 0-1.955-.517-1.955-1.9z"/></g></svg>
+        </a>&nbsp;&nbsp;
+        {{talk}}
+        <a href='/topics/{{t.id}}/vote/{{0}}/'>talk</a>
+    </li>
+    {% endfor %}
+    <li><a href="/topic/new/">New Topic</a></li>
+    </ul>
+{% endfor %}
+</div>
+</div>
+</div>
+{%endblock%}

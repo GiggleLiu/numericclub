@@ -68,12 +68,8 @@
               	    </a>
               	    <ul class="dropdown-menu">
                         <li><a href="{% url 'logout'%}" id="logout">{%trans "Logout"%}</a></li>
-                        {%if not user.is_superuser%}
                         <li><a href="/being/user_detail/{{user.id}}/" target="content">{%trans "Profile"%}</a></li>
                         <li><a href="#" target="content">{%trans "Talks"%}</a></li>
-                        {%else%}
-                        <li><a href="/being/user_manage/" target="content">{%trans "User Management"%}</a></li>
-                        {%endif%}
               	    </ul>
                 </li>
 	        </ul>

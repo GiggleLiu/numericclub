@@ -17,7 +17,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
     path('list/', views.topic_list, name='list'),
+    path('detail/<int:topic_id>/', views.topic_detail, name='detail'),
     path('<int:topic_id>/vote/<int:kind>/', views.vote, name='vote'),
 ]

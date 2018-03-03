@@ -19,16 +19,21 @@ class Topic(models.Model):
         return self.text
 
     def ranking(self):
-        return sum([v.kind for v in self.vote_set.all()])
+        like = len([v for v in self.vote_set.all() if v.kind==1])
+        dislike = len([v for v in self.vote_set.all() if v.kind==2])
+        return like-dislike
+
+    def link(self):
+        return '<a href="/topics/detail/%d/">%s</a>'%(self.id, self.text)
 
 class Vote(models.Model):
     '''
     kind:
         1: user like topic
-        -1: user dislike topic
+        2: user dislike topic
         0: user like to give a talk
     '''
-    KIND_CHOICES = ((0, 'can talk'), (1, 'like'), (-1,'dislike'))
+    KIND_CHOICES = ((0, 'can talk'), (1, 'like'), (2,'dislike'))
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     kind = models.IntegerField(choices=KIND_CHOICES)
@@ -38,11 +43,20 @@ def get_topics_ranked(genre):
     sorted(topics, key=lambda t:-t.ranking())
     return topics
 
-def vote(user, topic, kind):
+def newvote(user, topic, kind):
     vlist = Vote.objects.filter(user=user, topic=topic, kind=kind)
-    if len(vlist) == 0:
+    if len(vlist) != 0:
+        if kind==0:
+            vlist[0].delete()
+        return
+    else:
+        if kind!=0:
+            print(kind)
+            vlist = Vote.objects.filter(user=user, topic=topic, kind=3-kind)
+            if len(vlist)!=0:
+                print('@@@@@')
+                vlist[0].delete()
+                return
         v = Vote(user=user, topic=topic, kind=kind)
         v.save()
         return v
-    else:
-        return None

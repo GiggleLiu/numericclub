@@ -12,7 +12,7 @@ def archive(request):
 def current(request):
     talk = get_current_talk()
     if talk is not None:
-        return render(request, 'detail.html', {'talk':talk})
+        return render(request, 'talk_detail.html', {'talk':talk})
     else:
         # no talk page.
         return render(request, 'notalk.html')

@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{%load i18n static%}
+{%block content%}
+<div class="container" style="min-height:500px;">
+    <h1>{%if update%}{%trans "modify"%}{%else%}{{topic}}{%endif%}</h1>
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-8 col-xs-12">
+            <h2>people who like it</h2>
+            {%for p in like_list%}
+            {%if p.being%}{{p.being.link|safe}} &nbsp;{%else%}{{p}}{%endif%}
+            {%endfor%}
+            <h2>people who dislike it</h2>
+            {%for p in dislike_list%}
+            {%if p.being%}{{p.being.link|safe}} &nbsp;{%else%}{{p}}{%endif%}
+            {%endfor%}
+            <h2>people who want to talk it</h2>
+            {%for p in talk_list%}
+            {%if p.being%}{{p.being.link|safe}} &nbsp;{%else%}{{p}}{%endif%}
+            {%endfor%}
+            <div>
+            <a href="#">attach a file</p>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
