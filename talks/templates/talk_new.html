@@ -22,6 +22,7 @@
 			        <div class="form-group">
 			        	<div class="col-md-offset-3 col-md-9 text-right">
                             {%if update%}
+                            <a href="#" class="btn btn-danger" id="delete_talk">{%trans "delete this talk"%}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/talks/{{talk.id}}" class="btn btn-default">{%trans "cancel"%}</a>
                             {%else%}
                             <a href="/topics/list/" class="btn btn-default">{%trans "cancel"%}</a>
@@ -29,13 +30,6 @@
                             <button type="submit" class="btn btn-primary">{%if update%}{%trans "save"%}{%else%}{%trans "submit"%}{%endif%}</button>
 			            </div>
 			        </div>
-                    {%if update%}
-			        <div class="form-group">
-			        	<div class="col-md-offset-3 col-md-8">
-                            <a href="#" class="text-danger" id="delete_user">{%trans "delete this talk"%}</a>
-			            </div>
-			        </div>
-                    {%endif%}
 				</fieldset>
 			</form>
             <script>

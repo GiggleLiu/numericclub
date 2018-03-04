@@ -9,7 +9,7 @@ class Genre(models.Model):
 
 # Create your models here.
 class Topic(models.Model):
-    text = models.CharField(max_length=500, unique=True)
+    text = models.CharField('Description', max_length=500, unique=True)
     ref = models.FileField(upload_to='refs/', null=True, default=None, blank=True)
     url = models.URLField(max_length=200, null=True, default=None, blank=True)  # the link to 
     add_date = models.DateTimeField('date added')
@@ -29,9 +29,9 @@ class Topic(models.Model):
 
     def vote_info(self):
         vote_list = self.vote_set.all()
-        like_list = [v for v in vote_list if v.kind==1]
-        dislike_list = [v for v in vote_list if v.kind==2]
-        talk_list = [v for v in vote_list if v.kind==0]
+        like_list = [v.user for v in vote_list if v.kind==1]
+        dislike_list = [v.user for v in vote_list if v.kind==2]
+        talk_list = [v.user for v in vote_list if v.kind==0]
         return talk_list, like_list, dislike_list
 
     def link(self):

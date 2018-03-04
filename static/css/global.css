@@ -52,15 +52,18 @@ html,body{
 .closebtn{
     text-align:right;
     position:relative;
+    width:0px;
     height:0px;
     overflow:visible;
     z-index:1020;
+    left:173px;
+    top:-10px;
+    display:inline-block;
 }
 .closebtn a{
     color:white;
     font-size:1.6em;
     text-decoration:none;
-    margin-right:10px;
 }
 .fileUpload {
 	position: relative;
@@ -78,20 +81,25 @@ html,body{
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
-.tall-img{
+.staticbanner{
+    height:30px;
+    background-color:rgb(147,198,260);
+    margin-bottom:30px;
+}
+.tales {
+  width: 100%;
+}
+.carousel-div{
     width:100%;
-}
-.wide-img{
-    height:100%;
-}
-.tmnail{
+    max-height:500px;
     overflow:hidden;
-    border-radius:10px;
-    width:100%;
-    border:#CCC solid 2px;;
-    text-align:center;
-    margin-top:10px;
-    margin-bottom:4px;
 }
-.tmnail img{
+.carousel-div img{
+    width:100%;
+}
+.carousel-inner{
+  width:100%;
+}
+.bg-lighter{
+    background-color:rgb(147,198,260);
 }
