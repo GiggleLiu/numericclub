@@ -1,45 +1,72 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.views import generic
+from django.utils import timezone
 
 from .models import get_topics_ranked, Genre, Topic, newvote
+from . import forms
 
 def topic_list(request):
     glist = Genre.objects.all()
     tlist = []
     for g in glist:
         tl = get_topics_ranked(g)
-        like = [sum([v.kind==1 for v in t.vote_set.all()]) - sum([v.kind==2 for v in t.vote_set.all()]) for t in tl]
-        talk = [sum([v.kind==0 for v in t.vote_set.all()]) for t in tl]
-        tlist.append(zip(tl, like, talk))
+        tlist.append(tl)
     context = {
             'topic_list':zip(glist, tlist),
             }
     return render(request, 'topic_list.html', context)
 
 @login_required
-def vote(request, topic_id, kind):
+def topic_new(request, pk):
+    if request.method=='GET':
+        genre = Genre.objects.get(pk=pk)
+        context = {'genre':genre, 'form':forms.NewTopicForm()}
+        return render(request, 'topic_new.html', context)
+    elif request.method=='POST':
+        form = forms.NewTopicForm(data=request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            # Save the user's form data to the database.
+            user = request.user
+            genre = Genre.objects.get(pk=pk)
+            topic = Topic(genre=genre, user=user,text=data['text'], add_date=timezone.now())
+            topic.save()
+            return HttpResponseRedirect('/topics/%d/'%topic.id)
+
+@login_required
+def topic_update(request, pk):
+    if request.method=='GET':
+        topic = Topic.objects.get(pk=pk)
+        context = {'genre':topic.genre, 'topic':topic, 'form':forms.UpdateTopicForm(instance=topic)}
+        return render(request, 'topic_new.html', context)
+    elif request.method=='POST':
+        form = forms.UpdateTopicForm(data=request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            # Save the user's form data to the database.
+            user = request.user
+            topic = Topic.objects.get(pk=pk)
+            print(topic.user)
+            topic.text = data['text']
+            topic.save()
+            return HttpResponseRedirect('/topics/%d/'%pk)
+
+@login_required
+def vote(request, pk, kind):
     user = request.user
-    topic = Topic.objects.get(pk=topic_id)
+    topic = Topic.objects.get(pk=pk)
     newvote(user, topic, kind=kind)
     return HttpResponseRedirect('/topics/list/')
 
-def topic_detail(request, topic_id):
-    t = Topic.objects.get(pk=topic_id)
-    like_list, dislike_list, talk_list = [], [], []
-    for v in t.vote_set.all():
-        if v.kind == 0:
-            talk_list.append(v.user)
-        elif v.kind==1:
-            like_list.append(v.user)
-        else:
-            dislike_list.append(v.user)
-    context = {
-            'topic': t,
-            'like_list': like_list,
-            'dislike_list': dislike_list,
-            'talk_list': talk_list,
-            }
-    return render(request, 'topic_detail.html', context)
+class DetailView(generic.DetailView):
+    model = Topic
+    template_name = 'topic_detail.html'
 
-
+@login_required
+def topic_delete(request, pk):
+    if request.method=='GET':
+        topic = Topic.objects.get(pk=pk)
+        topic.delete()
+        return HttpResponseRedirect('/topics/list/')

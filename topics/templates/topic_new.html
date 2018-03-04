@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{%load i18n static bootstrap%}
+{%block content%}
+<div class="container" style="min-height:500px;">
+    <h1>{{genre}}: {%if topic%}{%trans "modify"%}{%else%}{%trans "new"%}{%endif%} topic</h1>
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-8 col-xs-12">
+            <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{%if topic%}/topics/update/{{topic.id}}/{%else%}/topics/new/{{genre.id}}/{%endif%}"> {% csrf_token %}
+		    	<fieldset>
+                {{form.text|bootstrap_horizontal}}
+                <!--
+                    <div class="form-group">
+                        <label for="exampleTextarea">{%trans "description of topic"%}</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3">{{topic.text}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="exampleInputFile">file as a reference</label>
+                    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text text-muted">{%trans "upload a pdf/zip file as reference."%}</small>
+                </div>-->
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">{%trans "Submit"%}</button>
+                    <a href="#" class="btn btn-danger" data-href="/topics/delete/{{topic.id}}/" data-toggle="modal" data-target="#confirm-delete">delete this topic</a>
+		    	</fieldset>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Delete topic <strong>{{topic}}</strong>?
+            </div>
+            <div class="modal-body">
+                Once deleted, you can never have it back!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+</script>
+
+{%endblock%}

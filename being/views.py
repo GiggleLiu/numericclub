@@ -2,26 +2,19 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
-from datetime import date
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User, Group, Permission
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-import datetime
 
 from . import forms
 from .models import *
 
-
 def user_detail(request, user_id):
     if request.method == 'GET':
         context = RequestContext(request)
-        objuser = getuser(user_id)
-        being = getbeingbyuser(objuser)
-        #return render_to_response('user_detail.html', {'objectbeing': being}, context)
-        return render(request, 'user_detail.html', {'objectbeing': being})
-
+        objuser = User.objects.get(pk=user_id)
+        return render(request, 'user_detail.html', {'user': user})
 
 @csrf_exempt
 def login(request):
@@ -29,7 +22,7 @@ def login(request):
     if request.method == 'POST':
         # check that the test cookie worked.
         user = auth.authenticate(username=request.POST.get(
-            'username'), password=request.POST.get('password'))
+            'email'), password=request.POST.get('password'))
         if user:
             if user.is_active:
                 # Correct password, and the user is marked "active"
@@ -43,7 +36,6 @@ def login(request):
             print('authentication failure')
             return render_to_response('error.html', {'error': 'Password incorrect!'}, context)
 
-    # request.session.set_test_cookie()
     return render_to_response('index.html', context)
 
 

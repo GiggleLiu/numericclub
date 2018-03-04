@@ -8,7 +8,7 @@
 		<div class="col-sm-9">
 			<!--Begin of Basic Informatoin-->
             <div id="update-password" class="">
-                <form class="form-horizontal" method="POST" action="{%if update%}/being/user_update/{%else%}/being/register_step1/{%endif%}">
+                <form class="form-horizontal" method="POST" action="{%if update%}/being/user_update/{%else%}/being/register_step1/{%endif%}"> {% csrf_token %}
 				<fieldset>
                     {%if not update%}
 					<div class="form-group">

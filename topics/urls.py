@@ -18,6 +18,9 @@ from . import views
 
 urlpatterns = [
     path('list/', views.topic_list, name='list'),
-    path('detail/<int:topic_id>/', views.topic_detail, name='detail'),
-    path('<int:topic_id>/vote/<int:kind>/', views.vote, name='vote'),
+    path('new/<int:pk>/', views.topic_new, name='new'),
+    path('update/<int:pk>/', views.topic_update, name='update'),
+    path('delete/<int:pk>/', views.topic_delete, name='delete'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/vote/<int:kind>/', views.vote, name='vote'),
 ]

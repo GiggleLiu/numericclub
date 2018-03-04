@@ -2,25 +2,33 @@
 {%load i18n static%}
 {%block content%}
 <div class="container" style="min-height:500px;">
-    <h1>{%if update%}{%trans "modify"%}{%else%}{{topic}}{%endif%}</h1>
+    <h1>{{topic}}</h1>
 	<div class="row" style="margin-top: 80px;">
 		<div class="col-md-8 col-xs-12">
-            <h2>people who like it</h2>
-            {%for p in like_list%}
-            {%if p.being%}{{p.being.link|safe}} &nbsp;{%else%}{{p}}{%endif%}
+            {%with vote_info=topic.vote_info%}
+            <h2>related talks</h2>
+            {%for talk in topic.talk_set.all%}
+            {{talk.link|safe}}
             {%endfor%}
-            <h2>people who dislike it</h2>
-            {%for p in dislike_list%}
-            {%if p.being%}{{p.being.link|safe}} &nbsp;{%else%}{{p}}{%endif%}
+            <h2>people who like it ({{vote_info.0|length}})</h2>
+            {%for v in vote_info.1%}
+            {%if v.user.being%}{{v.user.being.link|safe}} &nbsp;{%else%}{{v.user}}{%endif%}
             {%endfor%}
-            <h2>people who want to talk it</h2>
-            {%for p in talk_list%}
-            {%if p.being%}{{p.being.link|safe}} &nbsp;{%else%}{{p}}{%endif%}
+            <h2>people who dislike it ({{vote_info.1|length}})</h2>
+            {%for v in vote_info.2%}
+            {%if v.user.being%}{{v.user.being.link|safe}} &nbsp;{%else%}{{v.user}}{%endif%}
             {%endfor%}
-            <div>
-            <a href="#">attach a file</p>
-            </div>
+            <h2>people who want to talk about it ({{vote_info.2|length}})</h2>
+            {%for v in vote_info.0%}
+            {%if v.user.being%}{{v.user.being.link|safe}} &nbsp;{%else%}{{v.user}}{%endif%}
+            {%endfor%}
+            {%endwith%}
         </div>
+        {%if user.is_authenticated%}
+		<div class="col-md-8 col-xs-12">
+            <a href="/topics/update/{{topic.id}}/" class="btn btn-primary">update this topic</a>
+        </div>
+        {%endif%}
     </div>
 </div>
 {%endblock%}
