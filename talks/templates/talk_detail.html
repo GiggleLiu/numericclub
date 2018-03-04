@@ -1,4 +1,32 @@
 {%extends 'base.html'%}
+{%load i18n static%}
 {%block content%}
-{{talk}}
+<div class="container" style="min-height:500px;">
+    <h1 class="page-title">{{talk}}</h1>
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-8 col-xs-12">
+            <dl class="dl-horizontal">
+                <dt>{%trans "Github Link"%}</dt>
+                {%if talk.github_url%}
+                <dd><a href="{{talk.github_url|safe}}">{{talk.github_url}}</a></dd>
+                {%else%}
+                <dd><a href="#">Not Decided</a></dd>
+                {%endif%}
+                <dt>{%trans "Date Time"%}</dt>
+                <dd>{{talk.talk_date}}</dd>
+                <dt>{%trans "Taker"%}</dt>
+                <dd>{{talk.user.link|safe}}</dd>
+                <dt>{%trans "Location"%}</dt>
+                <dd>{{talk.location}}</dd>
+            </dl>
+        </div>
+    </div>
+    {%ifequal request.user talk.user%}
+	<div class="row" style="">
+		<div class="col-md-2 col-xs-12 text-right">
+            <a href="/talks/update/{{talk.id}}/" class="btn btn-primary">update this talk</a>
+        </div>
+    </div>
+    {%endifequal%}
+</div>
 {%endblock%}

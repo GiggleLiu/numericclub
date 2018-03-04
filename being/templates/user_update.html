@@ -1,6 +1,6 @@
 <!doctype html>
 {%extends 'base.html'%}
-{% load i18n static %}
+{%load i18n static bootstrap%}
 {%block content%}
 <div class="container" style="min-height:500px;">
     <h1>{%if update%}{%trans "update information"%}{%else%}{%trans "sign up"%}{%endif%}</h1>
@@ -8,54 +8,27 @@
 		<div class="col-sm-9">
 			<!--Begin of Basic Informatoin-->
             <div id="update-password" class="">
-                <form class="form-horizontal" method="POST" action="{%if update%}/being/user_update/{%else%}/being/register_step1/{%endif%}"> {% csrf_token %}
+                <form enctype="multipart/form-data" id="form-password" class="form-horizontal" method="POST" action="{%if update%}/being/user_update/{%else%}/being/register/{%endif%}"> {% csrf_token %}
 				<fieldset>
                     {%if not update%}
-					<div class="form-group">
-                        <label class=" control-label col-md-3" for="username">{%trans "user name"%}</label>
-					    <div class="col-md-8">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="{%trans "username"%}" value="{{user.username}}">
-					    </div>
-                    </div>
+                    {{form.email|bootstrap_horizontal}}
+                    {{form.password|bootstrap_horizontal}}
+                    {{form.password2|bootstrap_horizontal}}
                     {%endif%}
-
-                    {%if update%}
-					<div class="form-group">
-                        <label class=" control-label col-md-3" for="old-passwd1">{%trans "old password"%}</label>
-					    <div class="col-md-8">
-                            <input type="password" class="form-control" id="old-passwd1" placeholder="{%trans password%}" required name="oldpassword">
-					    </div>
-					</div>
-                    {%endif%}
-					<div class="form-group">
-                        <label class=" control-label col-md-3" for="passwd1">{%if update%}{%trans "new"%}{%endif%}{%trans password%}</label>
-					    <div class="col-md-8">
-                            <input type="password" class="form-control" id="passwd1" placeholder="{%trans "password"%}" required name="password">
-					    </div>
-					</div>
-					
-					<div class="form-group">
-                        <label class=" control-label col-md-3" for="passwd2">{%trans "repeat password"%}</label>
-					    <div class="col-md-8">
-					    	<input type="password" class="form-control" id="passwd2" placeholder="{%trans "repeat password"%}" required>
-					    </div>
-					</div>
                     <p id="p-alert" class="help-block"></p>
-			        <div class="form-group">
-                        <label class=" control-label col-md-3" for="email">{%trans email%}</label>
-			            <div class="col-md-8">
-                            <input type="email" class="form-control" placeholder="{%trans "email"%}" id="email" title="email" name="email" value="{{user.email}}">
-			        	</div>
-			        </div>
+
+                    {{form.truename|bootstrap_horizontal}}
+                    {{form.avatar|bootstrap_horizontal}}
+                    {{form.description|bootstrap_horizontal}}
 					
 			        <div class="form-group">
 			        	<div class="col-md-offset-3 col-md-8">
                             {%if update%}
-                            <a href="/being/user_detail/{{user.id}}" class="btn btn-default">{%trans cancel%}</a>
+                            <a href="/being/user_detail/{{reuqest.user.id}}" class="btn btn-default">{%trans "cancel"%}</a>
                             {%else%}
                             <a href="/" class="btn btn-default">{%trans "cancel"%}</a>
                             {%endif%}
-                            <button type="submit" class="btn btn-primary">{%if update%}{%trans "save"%}{%else%}{%trans "save & continue"%}{%endif%}</button>
+                            <button type="submit" class="btn btn-primary">{%if update%}{%trans "save"%}{%else%}{%trans "submit"%}{%endif%}</button>
 			            </div>
 			        </div>
                     {%if update%}
@@ -69,7 +42,7 @@
 			</form>
             <script>
                 $('#form-password').on('submit',function(){
-                    if($('#passwd1').val()!=$('#passwd2').val()){
+                    if($('#id_password').val()!=$('#id_password2').val()){
                         $('#p-alert').text('{%trans "inconsistant password"%}');
                     return false;}
                 });

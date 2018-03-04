@@ -1,6 +1,16 @@
 {%extends 'base.html'%}
+{%load i18n static mathfilters%}
 {%block content%}
-{%for talk in talk_list%}
-{{talk.link|safe}}
-{%endfor%}
+<div class="container" style="min-height:500px;">
+    <h1>{%trans "List of Talks"%}</h1>
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-8 col-xs-12">
+            <ul>
+            {%for talk in talk_list%}
+                <li>{{talk.link|safe}}&nbsp;&nbsp;</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 {%endblock%}

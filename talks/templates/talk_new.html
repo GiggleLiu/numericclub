@@ -1,0 +1,52 @@
+<!doctype html>
+{%extends 'base.html'%}
+{%load i18n static bootstrap%}
+{%block script%}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+{{ form.media }}
+{%endblock%}
+{%block content%}
+<div class="container" style="min-height:500px;">
+    <h1>{%if update%}{%trans "update talk: "%}{{talk}}{%else%}{%trans "new talk on topic: "%}{{topic}}{%endif%}</h1>
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-sm-9">
+			<!--Begin of Basic Informatoin-->
+            <div class="">
+                <form enctype="multipart/form-data" id="form-password" class="form-horizontal" method="POST" action="{%if update%}/talks/update/{{talk.id}}/{%else%}/talks/new/{{topic.id}}/{%endif%}"> {% csrf_token %}
+				<fieldset>
+                    {{form.title|bootstrap_horizontal}}
+                    {{form.talk_date|bootstrap_horizontal}}
+                    {{form.github_url|bootstrap_horizontal}}
+			        <div class="form-group">
+			        	<div class="col-md-offset-3 col-md-9 text-right">
+                            {%if update%}
+                            <a href="/talks/{{talk.id}}" class="btn btn-default">{%trans "cancel"%}</a>
+                            {%else%}
+                            <a href="/topics/list/" class="btn btn-default">{%trans "cancel"%}</a>
+                            {%endif%}
+                            <button type="submit" class="btn btn-primary">{%if update%}{%trans "save"%}{%else%}{%trans "submit"%}{%endif%}</button>
+			            </div>
+			        </div>
+                    {%if update%}
+			        <div class="form-group">
+			        	<div class="col-md-offset-3 col-md-8">
+                            <a href="#" class="text-danger" id="delete_user">{%trans "delete this talk"%}</a>
+			            </div>
+			        </div>
+                    {%endif%}
+				</fieldset>
+			</form>
+            <script>
+                $('#delete_talk').on('click',function(){
+                    if(confirm('{%trans "warning, once a talk is deleted, you can not find it back!"%}')){
+                        window.location.href='/talks/delete/{{talk.id}}/';
+                    }
+                });
+            </script>
+            </div>
+		</div>
+	</div>
+</div>
+{%endblock%}

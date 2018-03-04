@@ -1,32 +1,27 @@
 from being.models import newuser, getuserbyname
 from topics.models import Genre, Topic, newvote
 from talks.models import Talk
-from django.contrib.auth.models import Group
 from datetime import datetime
 import random, traceback
 
 def initialize():
-    gdefault = Group.objects.get('default')
-    if not gdefault:
-        gdefault = Group('default')
-        gdefault.save()
-
     # init user
     for i in range(10):
-        username = 'test%d'%i
-        if not getuserbyname(username):
-            user = newuser(username=username, password='liujinguo',
-                    email='cacate0129@gmail.com', description="%d"%i, avatar=None)
+        truename = 'test%d'%i
+        if not getuserbyname(truename):
+            user = newuser(truename=truename, password='liujinguo',
+                    email='cacate012%d@gmail.com'%i, description="%d"%i, avatar=None)
+            print('create user %s'%truename)
 
     # init genres
     glist = ['Quantum Computation', 'Machine Learning',
             'Tensor Network', 'Monte Carlo']
     for g in glist:
         try:
-            gl = Genre(text=g)
+            g = Genre(text=g)
             g.save()
-            gl.append(g)
-        except:
+            print('create genre %s'%g)
+        except Exception:
             pass
 
     # init topics
@@ -36,6 +31,7 @@ def initialize():
                     add_date=datetime.now(), genre=random.choice(Genre.objects.all()),
                     user=getuserbyname('test%d'%random.randint(0,9)))
             t.save()
+            print('create topic %s'%t)
         except:
             pass
 
@@ -43,6 +39,7 @@ def initialize():
         try:
             for j in range(5):
                 kind = random.choice([1, 0, -1])
-                newvote(topic=t, user=getuserbyname('test%d'%j), kind=kind)
+                v = newvote(topic=t, user=getuserbyname('test%d'%j), kind=kind)
+                print('create vote %s'%v)
         except Exception:
             print(traceback.format_exc())

@@ -1,1 +1,2 @@
 django-mathfilters
+django-bootstrap3-datetimepicker

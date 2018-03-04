@@ -1,35 +1,34 @@
 {%extends 'base.html'%}
 {%load i18n static%}
-{%block title%}{{user}}{%endblock%}
+{%block title%}{{objuser}}{%endblock%}
 
 {%block content%}
 <div class="container">
     <div class="row" style="margin-top: 40px;">
         <div class="col-md-12">
             <h3 style="font-family:Arial, Helvetica, sans-serif; font-weight:bold;" class="text-muted">{{role}}</h3>
-            <h1 class="page-title">{{user}}</h1>
+            <h1 class="page-title">{{objuser}}</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-md-3">
             <a href="#" class="thumbnail">
-                <img src="{%if user.avatar%}{{user.avatar.url}}{%else%}/static/img/avatar/default.png{%endif%}">
+                <img src="{%if objuser.avatar%}{{objuser.avatar.url}}{%else%}/static/img/default_avatar.png{%endif%}">
             </a>
         </div>
         <div class="col-md-9">
             <div class="panel panel-primary" id="panel-right">
                 <div class="panel-heading">
                     {%trans "Profile"%}
-                    {%ifequal user user%}
-                    <span class="badge pull-right"><span class="glyphicon glyphicon-edit"></span><a class="text-primary" data-toggle="modal" href="/being/being_update/" title="{%trans "Modify"%}">{%trans "Modify"%}</a></span>
-                    <span class="badge pull-right" style="margin-right:7px;"><span class="glyphicon glyphicon-edit"></span><a class="text-primary" href="/being/user_update/" title="{%trans "Change Password/Email"%}">{%trans "Change Password/Email"%}</a></span>
+                    {%ifequal objuser user%}
+                    <span class="badge pull-right"><span class="glyphicon glyphicon-edit"></span><a class="text-primary" data-toggle="modal" href="/being/user_update/" title="{%trans "Modify"%}">{%trans "Modify"%}</a></span>
+                    <span class="badge pull-right" style="margin-right:7px;"><span class="glyphicon glyphicon-edit"></span><a class="text-primary" href="/being/update_password/" title="{%trans "Change Password"%}">{%trans "Change Password"%}</a></span>
                     {%endifequal%}
                 </div>
                 <div class="panel-body" style="background-color:rgb(147,198,260); min-height:220px;"> 
                     <dl class="dl-horizontal">
-                        <dt>{%trans "True Name"%}</dt><dd>{{user.username}}</dd>
-                        <dt>{%trans "Email"%}</dt><dd><a href="mailto:{{user.email}}">{{user.email}}</a></dd>
-                        <dt>{%trans "Introduction"%}</dt><dd>{{user.description}}</dd>
+                        <dt>{%trans "Email"%}</dt><dd><a href="mailto:{{objuser.email}}">{{objuser.email}}</a></dd>
+                        <dt>{%trans "Introduction"%}</dt><dd>{{objuser.description}}</dd>
                     </dl>
                 </div>
             </div>

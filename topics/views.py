@@ -19,6 +19,17 @@ def topic_list(request):
     return render(request, 'topic_list.html', context)
 
 @login_required
+def vote(request, pk, kind):
+    user = request.user
+    topic = Topic.objects.get(pk=pk)
+    newvote(user, topic, kind=kind)
+    return HttpResponseRedirect('/topics/list/')
+
+class DetailView(generic.DetailView):
+    model = Topic
+    template_name = 'topic_detail.html'
+
+@login_required
 def topic_new(request, pk):
     if request.method=='GET':
         genre = Genre.objects.get(pk=pk)
@@ -42,27 +53,15 @@ def topic_update(request, pk):
         context = {'genre':topic.genre, 'topic':topic, 'form':forms.UpdateTopicForm(instance=topic)}
         return render(request, 'topic_new.html', context)
     elif request.method=='POST':
-        form = forms.UpdateTopicForm(data=request.POST)
+        topic = Topic.objects.get(pk=pk)
+        form = forms.UpdateTopicForm(data=request.POST, instance=topic)
         if form.is_valid():
             data = form.cleaned_data
             # Save the user's form data to the database.
             user = request.user
-            topic = Topic.objects.get(pk=pk)
-            print(topic.user)
             topic.text = data['text']
             topic.save()
             return HttpResponseRedirect('/topics/%d/'%pk)
-
-@login_required
-def vote(request, pk, kind):
-    user = request.user
-    topic = Topic.objects.get(pk=pk)
-    newvote(user, topic, kind=kind)
-    return HttpResponseRedirect('/topics/list/')
-
-class DetailView(generic.DetailView):
-    model = Topic
-    template_name = 'topic_detail.html'
 
 @login_required
 def topic_delete(request, pk):

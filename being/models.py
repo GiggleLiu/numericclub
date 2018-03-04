@@ -1,6 +1,6 @@
 #-*-coding:utf-8-*-
 from django.db import models
-from django.contrib.auth.models import Group, Permission, PermissionsMixin
+from django.contrib.auth.models import Permission, PermissionsMixin
 from django.core.mail import send_mail
 from django.contrib.contenttypes.models import ContentType
 
@@ -9,21 +9,28 @@ from .managers import UserManager
 
 class AdvancedUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=64)
+    truename = models.CharField(max_length=64)
     credit = models.IntegerField(default=0)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     description = models.CharField(null=True, blank=True, max_length=512)
+    is_admin = models.BooleanField(default=False)
 
+    is_staff = models.BooleanField(
+        'staff status',
+        default=False,
+        help_text='Designates whether the user can log into this admin site.',
+    )
     objects = UserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    EMAIL_FIELD = 'email'
 
     class Meta:
         verbose_name = 'user'
         verbose_name_plural = 'users'
 
     def __str__(self):
-        return '%s' % (self.username)
+        return '%s' % (self.truename)
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         '''
@@ -32,11 +39,11 @@ class AdvancedUser(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def link(self):
-        return '<a href="/being/user_detail/%d/">%s</a>'%(self.user.id, self.truename)
+        return '<a href="/being/user_detail/%d/">%s</a>'%(self.id, self.truename)
 
 def getuserbyname(name):
     try:
-        user = AdvancedUser.objects.get(username=name)
+        user = AdvancedUser.objects.get(truename=name)
         return user
     except:
         return None
@@ -44,20 +51,20 @@ def getuserbyname(name):
 def getadmin():
     return getuserbyname('cacate')
 
-def newuser(username, password, email, description, avatar):
-    user = AdvancedUser(username=username, email=email, description=description, avatar=avatar)
+def newuser(truename, password, email, description, avatar):
+    user = AdvancedUser(truename=truename, email=email, description=description, avatar=avatar)
     user.set_password(password)
-    g = Group.objects.get(name='default')
     user.save()
-    user.groups.add(g)
     return user
 
-def updateuser(user, oldpassword, newpassword, email, description, avatar):
+def updateuser(user, description, avatar):
+    if avatar:
+        user.avatar = avatar
+    user.description = description
+    user.save()
+
+def updatepassword(user, oldpassword, newpassword):
     if user.check_password(oldpassword):
-        user.email = email
         user.set_password(newpassword)
-        if avatar:
-            user.avatar = avatar
-        user.description = description
         user.save()
 

@@ -19,5 +19,8 @@ from . import views
 urlpatterns = [
     path('archive/', views.ListView.as_view(), name='archive'),
     path('current/', views.current, name='current'),
+    path('new/<int:topic_id>/', views.talk_new, name='new'),
+    path('delete/<int:pk>/', views.talk_delete, name='delete'),
+    path('update/<int:pk>/', views.talk_update, name='update'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
 ]
