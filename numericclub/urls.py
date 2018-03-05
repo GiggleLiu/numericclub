@@ -22,11 +22,11 @@ from . import views
 from . import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/talks/current/')),
+    path('help/<str:page>/', views.help,name='help'),
+    path('admin/', admin.site.urls),
     path('topics/', include('topics.urls')),
     path('talks/', include('talks.urls')),
     path('being/', include('being.urls')),
-    path('rules/', views.rules,name='rules'),
     path('avatar/', include('avatar.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

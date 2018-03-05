@@ -58,7 +58,6 @@ def topic_update(request, pk):
         if form.is_valid():
             data = form.cleaned_data
             # Save the user's form data to the database.
-            user = request.user
             topic.text = data['text']
             topic.save()
             return HttpResponseRedirect('/topics/%d/'%pk)
@@ -66,6 +65,7 @@ def topic_update(request, pk):
 @login_required
 def topic_delete(request, pk):
     if request.method=='GET':
-        topic = Topic.objects.get(pk=pk)
-        topic.delete()
-        return HttpResponseRedirect('/topics/list/')
+        if request.user.is_stuff:
+            topic = Topic.objects.get(pk=pk)
+            topic.delete()
+            return HttpResponseRedirect('/topics/list/')

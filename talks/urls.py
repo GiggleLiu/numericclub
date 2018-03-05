@@ -22,5 +22,5 @@ urlpatterns = [
     path('new/<int:topic_id>/', views.talk_new, name='new'),
     path('delete/<int:pk>/', views.talk_delete, name='delete'),
     path('update/<int:pk>/', views.talk_update, name='update'),
-    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/', views.talk_detail, name='detail'),
 ]

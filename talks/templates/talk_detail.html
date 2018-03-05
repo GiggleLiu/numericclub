@@ -1,9 +1,13 @@
 {%extends 'base.html'%}
 {%load i18n static%}
+{%block script%}
+{{header|safe}}
+<link rel="stylesheet" href="{%static "css/template.css"%}" />
+{%endblock%}
 {%block content%}
 <div class="container" style="min-height:500px;">
     <h1 class="page-title">{{talk}}</h1>
-	<div class="row" style="margin-top: 80px;">
+	<div class="row" style="margin-top: 40px;">
 		<div class="col-md-8 col-xs-12">
             <dl class="dl-horizontal">
                 <dt>{%trans "Github Link"%}</dt>
@@ -22,11 +26,17 @@
         </div>
     </div>
     {%ifequal request.user talk.user%}
-	<div class="row" style="">
-		<div class="col-md-2 col-xs-12 text-right">
-            <a href="/talks/update/{{talk.id}}/" class="btn btn-primary">update this talk</a>
+	<div class="row" style=" margin-bottom:20px">
+		<div class="col-md-1 col-xs-1">
+        </div>
+		<div class="col-md-10 col-xs-10 text-left">
+            <a href="/talks/update/{{talk.id}}/" class="btn btn-primary">{%trans "update talk information"%}</a>
         </div>
     </div>
     {%endifequal%}
+    <hr class="col-xs-12">
+	<div class="row" style="margin-top:40px;">
+    {{content|safe}}
+    </div>
 </div>
 {%endblock%}

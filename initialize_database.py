@@ -6,6 +6,13 @@ import random, traceback
 
 def initialize():
     # init user
+    admin = 'cacate'
+    if not getuserbyname(admin):
+        user = newuser(truename=admin, password='liujinguo',
+                email='cacate0129@iphy.ac.cn', description="I am the boss!", avatar=None)
+        user.is_stuff = True
+        user.is_superuser = True
+        user.save()
     for i in range(10):
         truename = 'test%d'%i
         if not getuserbyname(truename):

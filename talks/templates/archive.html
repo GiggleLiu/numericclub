@@ -3,13 +3,26 @@
 {%block content%}
 <div class="container" style="min-height:500px;">
     <h1>{%trans "List of Talks"%}</h1>
-	<div class="row" style="margin-top: 80px;">
-		<div class="col-md-8 col-xs-12">
-            <ul>
-            {%for talk in talk_list%}
-                <li>{{talk.link|safe}}&nbsp;&nbsp;</li>
-            {% endfor %}
-            </ul>
+	<div class="row" style="margin-top: 40px;">
+		<div class="col-md-10 col-xs-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Talker</th>
+                        <th>Date Time</th>
+                    </tr>
+                </thead>
+                {%for talk in talk_list%}
+                <tbody>
+                    <tr>
+                        <td>{{talk.link|safe}}</td>
+                        <td>{{talk.user.link|safe}}</td>
+                        <td>{{talk.talk_date}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
         </div>
     </div>
 </div>

@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%load i18n static%}
+{%block script%}
+{{header|safe}}
+<link rel="stylesheet" href="{%static "css/template.css"%}" />
+{%endblock%}
+
+{%block content%}
+<div class="container" style="min-height:500px;">
+    <h1>{{title}}</h1>
+	<div class="row" style="margin-top: 40px;">
+        {{content|safe}}
+    </div>
+</div>
+{%endblock%}

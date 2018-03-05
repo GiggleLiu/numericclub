@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from being.models import getadmin
+
 class Genre(models.Model):
     text = models.CharField(max_length=200)
 
@@ -14,7 +16,7 @@ class Topic(models.Model):
     url = models.URLField(max_length=200, null=True, default=None, blank=True)  # the link to 
     add_date = models.DateTimeField('date added')
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(getadmin))
 
     def __str__(self):
         return self.text

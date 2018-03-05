@@ -1,2 +1,3 @@
 django-mathfilters
-django-bootstrap3-datetimepicker
+django-bootstrap3-datetimepicker-2
+pypandoc

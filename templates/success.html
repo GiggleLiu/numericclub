@@ -1,4 +1,11 @@
 {%extends 'base.html'%}
 {%block content%}
-success!
+<div class="container" style="min-height:500px;">
+    <h1>{%if update%}{%trans "modify"%}{%else%}{%trans "Yep!"%}{%endif%}</h1>
+	<div class="row" style="margin-top: 40px;">
+		<div class="col-md-8 col-xs-12">
+            Error Page
+        </div>
+    </div>
+</div>
 {%endblock%}

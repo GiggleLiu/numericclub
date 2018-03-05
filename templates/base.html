@@ -40,7 +40,7 @@
     	<ul class="nav navbar-nav" id="nav1-ul">
             <li class="{%block class-nav-topics%}{%endblock%}"><a href="/topics/list/">{%trans "Topics"%}</a></li>
             <li class="{%block class-nav-archive%}{%endblock%}"><a href="/talks/archive/">{%trans "Archive"%}</a></li>
-            <li class="{%block class-nav-main%}{%endblock%}"><a href="/rules/">{%trans "Rules"%}</a></li>
+            <li class="{%block class-nav-main%}{%endblock%}"><a href="/help/rules/">{%trans "Rules"%}</a></li>
     	</ul>
         {%block userpanel%}
             {%if not user.is_authenticated%}
@@ -103,8 +103,8 @@
 						<h5 class="text-muted">about</h5>
 					</li>
                     <li><a href="/help/leiwang/">{%trans "Lei Wang's Group"%}</a></li>
-                    <li><a href="/help/author/">{%trans "author"%}</a></li>
-                    <li><a href="/help/numeric_club/">{%trans "website"%}</a></li>
+                    <li><a href="https://giggleliu.github.io/">{%trans "Author"%}</a></li>
+                    <li><a href="/help/numeric_club/">{%trans "Website"%}</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3">
@@ -112,9 +112,9 @@
 					<li>
 						<h5 class="text-muted">help</h5>
 					</li>
-                    <li><a href="/talker/">{%trans "how to give a talk"%}</a></li>
-                    <li><a href="/listener/">{%trans "requirements to audiences"%}</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#modal-feedback">{%trans "feed back"%}</a></li>
+                    <li><a href="/talker/">{%trans "How to give a talk"%}</a></li>
+                    <li><a href="/listener/">{%trans "Requirements to audiences"%}</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#modal-feedback">{%trans "Feed back"%}</a></li>
 				</ul>
 			</div>
             <div class="col-md-3">

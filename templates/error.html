@@ -1,4 +1,11 @@
 {%extends 'base.html'%}
 {%block content%}
-Error Page
+<div class="container" style="min-height:500px;">
+    <h1>{%if update%}{%trans "modify"%}{%else%}{%trans "Oops!"%}{%endif%}</h1>
+	<div class="row" style="margin-top: 40px;">
+		<div class="col-md-8 col-xs-12">
+            {{error}}
+        </div>
+    </div>
+</div>
 {%endblock%}

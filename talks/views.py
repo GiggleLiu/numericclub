@@ -7,6 +7,7 @@ from django.utils import timezone
 
 from topics.models import Topic
 from .models import Talk, get_current_talk
+from numericclub.utils import get_readme_html
 from . import forms
 
 # Create your views here.
@@ -17,8 +18,10 @@ def archive(request):
 
 def current(request):
     talk = get_current_talk()
+    header, content = get_readme_html(talk.github_url)
     if talk is not None:
-        return render(request, 'talk_detail.html', {'talk':talk})
+        return render(request, 'talk_detail.html',
+                {'talk':talk, 'header':header, 'content':content})
     else:
         # no talk page.
         return render(request, 'notalk.html')
@@ -30,10 +33,15 @@ class ListView(generic.ListView):
     def get_queryset(self):
         return Talk.objects.all()
 
-class DetailView(generic.DetailView):
-    model = Talk
-    template_name = 'talk_detail.html'
-
+def talk_detail(request, pk):
+    talk = Talk.objects.get(pk=pk)
+    header, content = get_readme_html(talk.github_url)
+    if talk is not None:
+        return render(request, 'talk_detail.html',
+                {'talk':talk, 'header':header, 'content':content})
+    else:
+        # no talk page.
+        return render(request, 'notalk.html')
 
 @login_required
 def talk_new(request, topic_id):
@@ -72,15 +80,14 @@ def talk_update(request, pk):
     elif request.method=='POST':
         talk = Talk.objects.get(pk=pk)
         form = forms.UpdateTalkForm(data=request.POST, instance=talk)
-        if form.is_valid():
+        if form.is_valid() and request.user == talk.user:
             data = form.cleaned_data
             # Save the user's form data to the database.
-            user = request.user
             talk.title = data['title']
             talk.talk_date = data['talk_date']
             talk.github_url = data['github_url']
             talk.save()
-            return HttpResponseRedirect('/topics/%d/'%pk)
+            return HttpResponseRedirect('/talks/%d/'%pk)
         else:
             context = RequestContext(request)
             error = form.errors
@@ -93,6 +100,13 @@ def talk_update(request, pk):
 @login_required
 def talk_delete(request, pk):
     if request.method=='GET':
-        talk = Talk.objects.get(pk=pk)
-        talk.delete()
-        return HttpResponseRedirect('/topics/list/')
+        if request.user == talk.user:
+            talk = Talk.objects.get(pk=pk)
+            talk.delete()
+            return HttpResponseRedirect('/topics/list/')
+        else:
+            context = RequestContext(request)
+            return render_to_response(
+                'talk_new.html',
+                {'error': 'You are not the owner to this talk!', 'form':form, 'update':True},
+                context)

@@ -3,9 +3,9 @@
 {%block content%}
 <div class="container" style="min-height:500px;">
     <h1>{%if update%}{%trans "modify"%}{%else%}{%trans "List of Topics"%}{%endif%}</h1>
-	<div class="row" style="margin-top: 80px;">
+	<div class="row" style="margin-top: 40px;">
 		<div class="col-md-8 col-xs-12">
-{%for g, topics in topic_list%}
+    {%for g, topics in topic_list%}
     <h3>{{g}}</h3>
     <ul>
     {% for t in topics %}
@@ -27,7 +27,7 @@
     {% endfor %}
     <li><a href="/topics/new/{{g.id}}/">New Topic</a></li>
     </ul>
-{% endfor %}
+    {% endfor %}
 </div>
 </div>
 </div>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <header>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  </header>
+  <link rel="stylesheet" href="static/css/template.css" />
+</head>
+<body>
+    <div class="container">
+    <div class="row" style="margin-top:80px;">
+            <div id="TOC" class="span3">
+        <div class="well toc">
+        <ul>
+          <li class="nav-header">Table of Contents</li>
+        </ul>
+        <ul>
+        <li><a href="#viznet---a-network-visualization-toolbox">viznet - a network visualization toolbox</a><ul>
+        <li><a href="#to-install">To Install</a></li>
+        <li><a href="#to-run-examples">To Run Examples</a></li>
+        <li><a href="#author">Author</a></li>
+        <li><a href="#documentation">Documentation</a></li>
+        </ul></li>
+        </ul>
+        </div>
+        </div>
+                <content>
+        <div class="span9">
+                <h1 id="viznet---a-network-visualization-toolbox">viznet - a network visualization toolbox</h1>
+<p><img src="https://raw.githubusercontent.com/GiggleLiu/viznet/master/docs/images/viznetlogo.jpg" /> viznet is designed for visualizing networks composed of nodes and edges, e.g. tensor networks, neural networks and quantum circuits.</p>
+<p>It is based on and compatible with matplotlib. The theme brush (for both node and edge) makes the design itself interesting, getting you free from fine tuning the node and wire parameters for hours.</p>
+<h2 id="to-install">To Install</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">pip</span> install viznet</code></pre></div>
+<p>or for the latest version</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">git</span> clone https://github.com/GiggleLiu/viznet.git
+    $ <span class="kw">cd</span> viznet
+    $ <span class="kw">pip</span> install -r requirements.txt
+    $ <span class="kw">python</span> setup.py install</code></pre></div>
+<h2 id="to-run-examples">To Run Examples</h2>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">cd</span> viznet
+    $ <span class="kw">python</span> apps/nn/bm.py      <span class="co"># example on neural network</span>
+    $ <span class="kw">python</span> apps/tn/tebd.py    <span class="co"># example on tensor network</span>
+    $ <span class="kw">python</span> apps/qc/ghz.py     <span class="co"># example on quantum circuit</span></code></pre></div>
+<p>you will get something like</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Boltzmann Machine</th>
+<th style="text-align: left;">TEBD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><img src="https://raw.githubusercontent.com/GiggleLiu/viznet/master/docs/images/bm.png" /></td>
+<td style="text-align: left;"><img src="https://raw.githubusercontent.com/GiggleLiu/viznet/master/docs/images/tebd.png" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">quantum circuit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><img src="https://raw.githubusercontent.com/GiggleLiu/viznet/master/docs/images/ghz4.png" /></td>
+</tr>
+</tbody>
+</table>
+<p>The theme for neural network follows from <a href="http://www.asimovinstitute.org/neural-network-zoo/">Neural Network Zoo Page</a>,</p>
+<p>The theme for quantum circuits follows from <a href="https://github.com/ProjectQ-Framework/ProjectQ.git">ProjectQ</a>.</p>
+<h2 id="author">Author</h2>
+<p>The first release of viznet (v0.1) was developed by <a href="https://giggleliu.github.io/">Jin-Guo Liu</a> in the group of Lei Wang at IOP China.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Click <a href="http://viznet.readthedocs.io/en/latest/">here</a> to read the docs!</p>
+                </div>
+        </content>
+    </div>
+  </div>
+</body>
+</html>
