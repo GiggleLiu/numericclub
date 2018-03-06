@@ -94,13 +94,11 @@ def talk_update(request, pk):
             talk.save()
             return HttpResponseRedirect('/talks/%d/'%pk)
         else:
-            context = RequestContext(request)
             error = form.errors
+            talk = Talk.objects.get(pk=pk)
             # Render the template depending on the context.
-            return render_to_response(
-                'talk_new.html',
-                {'error': error, 'form':form, 'update':True},
-                context)
+            return render(request, 'talk_new.html',
+                {'error': error, 'talk':talk, 'form':form, 'update':True})
 
 @login_required
 def talk_delete(request, pk):
@@ -130,7 +128,7 @@ def talk_publish(request, pk):
 @login_required
 def talk_unpublish(request, pk):
     talk = Talk.objects.get(pk=pk)
-    if request.user == talk.user or user.is_superuser:
+    if request.user == talk.user or request.user.is_superuser:
         talk.status = 0
         talk.save()
         return HttpResponseRedirect('/')
