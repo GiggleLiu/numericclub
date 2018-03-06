@@ -8,7 +8,12 @@ https://docs.djangoproject.com/en/2.0/howto/deployment/wsgi/
 """
 
 import os
+import sys 
 
+with open('/home/leo/website/numericclub/numericclub/wsgi.log', 'w') as f:
+    f.write('%s'%sys.executable)
+sys.path.append('/home/leo/website/numericclub') 
+ 
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "numericclub.settings")

@@ -24,8 +24,9 @@ SECRET_KEY = 'w_l10&nehl^++%b&l+jo=7@@$2ybx3dq=w*!%pk5xzvm-@wlut'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.v2nobel.com']
 
 
 # Application definition

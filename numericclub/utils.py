@@ -2,6 +2,8 @@ import urllib.request, traceback
 import pypandoc
 import re, os, glob
 
+from . import settings
+
 def get_readme(url):
     if url[-4:] == '.git':
         url = url[:-4]
@@ -29,11 +31,13 @@ def html2headercontent(htmltext):
 def get_readme_html(url):
     if url is not None and url!='':
         try:
-            #mdtext = get_readme(url)
-            #htmltext = md2html(mdtext)
-            with open('README.html', 'r') as f:
-                print(url)
-                htmltext = f.read()
+            if settings.DEBUG:
+                with open('README.html', 'r') as f:
+                    htmltext = f.read()
+                    return html2headercontent(htmltext)
+            else:
+                mdtext = get_readme(url)
+                htmltext = md2html(mdtext)
                 return html2headercontent(htmltext)
         except Exception:
             print(traceback.format_exc())
