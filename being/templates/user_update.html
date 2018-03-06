@@ -15,16 +15,16 @@
                     {{form.password|bootstrap_horizontal}}
                     {{form.password2|bootstrap_horizontal}}
                     {%endif%}
-                    <p id="p-alert" class="help-block"></p>
+                    <span id="p-alert" class="help-block col-md-offset-2"></span>
 
                     {{form.truename|bootstrap_horizontal}}
                     {{form.avatar|bootstrap_horizontal}}
                     {{form.description|bootstrap_horizontal}}
 					
 			        <div class="form-group">
-			        	<div class="col-md-offset-3 col-md-8">
+			        	<div class="col-md-offset-2 col-md-10">
                             {%if update%}
-                            <a href="/being/user_detail/{{reuqest.user.id}}" class="btn btn-default">{%trans "cancel"%}</a>
+                            <a href="/being/user_detail/{{request.user.id}}/" class="btn btn-default">{%trans "cancel"%}</a>
                             {%else%}
                             <a href="/" class="btn btn-default">{%trans "cancel"%}</a>
                             {%endif%}
@@ -33,7 +33,7 @@
 			        </div>
                     {%if update%}
 			        <div class="form-group">
-			        	<div class="col-md-offset-3 col-md-8">
+			        	<div class="col-md-offset-2 col-md-8">
                             <a href="#" class="text-danger" id="delete_user">{%trans "delete account forever"%}</a>
 			            </div>
 			        </div>

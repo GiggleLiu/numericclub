@@ -1,7 +1,7 @@
 html,body{
-	font-family:"微软雅黑";
 	overflow-x:hidden;
     height:100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .profile-poker{
 	width:300px;

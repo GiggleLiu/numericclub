@@ -65,7 +65,7 @@ def topic_update(request, pk):
 @login_required
 def topic_delete(request, pk):
     if request.method=='GET':
-        if request.user.is_stuff:
+        if request.user.is_superuser:
             topic = Topic.objects.get(pk=pk)
             topic.delete()
             return HttpResponseRedirect('/topics/list/')

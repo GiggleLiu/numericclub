@@ -1,4 +1,13 @@
 {%extends 'base.html'%}
 {%block content%}
-no talk
+<div class="container" style="min-height:500px;">
+    <h1>{{title}}</h1>
+	<div class="row" style="margin-top: 40px;">
+        no talk available now.
+        <ul>
+            <li>read the <a href="/help/rules/">guide</a></li>
+            <li>start a talk from <a href="/topics/list/">topic list</a></li>
+        </ul>
+    </div>
+</div>
 {%endblock%}

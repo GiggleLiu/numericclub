@@ -1,4 +1,3 @@
-#-*-coding:utf-8-*-
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
@@ -28,8 +27,7 @@ def login(request):
                 # Correct password, and the user is marked "active"
                 auth.login(request, user)
                 # Redirect to a success page.
-                print('login!')
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))
             else:
                 return render_to_response('error.html', {'error': 'your account is no longer active!'}, context)
         else:
@@ -71,10 +69,8 @@ def register(request):
         # They'll also be shown to the user.
         else:
             error = user_form.errors
-
-    # Render the template depending on the context.
-    context = RequestContext(request)
-    return render_to_response('user_update.html', {'error': error}, context)
+            # Render the template depending on the context.
+            return render(request, 'user_update.html', {'error': error, 'form':user_form})
 
 
 @login_required
@@ -82,15 +78,12 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
-@csrf_exempt
 @login_required
 def user_update(request):
     # Like before, get the request's context.
-    context = RequestContext(request)
     if request.method == 'GET':
-        user = request.user
-        form = forms.UpdateUserForm(instance=user)
-        return render_to_response('user_update.html', {'form': form, 'update': True}, context)
+        form = forms.UpdateUserForm(instance=request.user)
+        return render(request, 'user_update.html', {'form': form, 'update': True})
 
     # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':

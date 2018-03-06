@@ -8,17 +8,39 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Talker</th>
+                        <th>Talk Title</th>
+                        <th>Speaker</th>
                         <th>Date Time</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 {%for talk in talk_list%}
                 <tbody>
-                    <tr>
+                    <tr class="
+                            {%ifequal talk.status 0%}
+                            info
+                            {%endifequal%}
+                            {%ifequal talk.status 1%}
+                            warning
+                            {%endifequal%}
+                            {%ifequal talk.status 2%}
+                            danger
+                            {%endifequal%}
+                        ">
                         <td>{{talk.link|safe}}</td>
                         <td>{{talk.user.link|safe}}</td>
                         <td>{{talk.talk_date}}</td>
+                        <td>
+                            {%ifequal talk.status 0%}
+                            Preparing
+                            {%endifequal%}
+                            {%ifequal talk.status 1%}
+                            Ready
+                            {%endifequal%}
+                            {%ifequal talk.status 2%}
+                            Finished
+                            {%endifequal%}
+                        </td>
                     </tr>
                 </tbody>
                 {% endfor %}

@@ -14,7 +14,7 @@
     <script type="text/javascript" src="{% static 'js/bootstrap.min.js'%}"></script>
     {%block script%}{%endblock%}
 	<script type="text/javascript" src="{% static 'js/global.js'%}"></script>
-	<link rel="shortcut icon" href="{%static 'img/web/favicon.ico'%}" type="image/x-icon" />
+	<link rel="shortcut icon" href="{%static 'img/web/favicon2.svg'%}" type="image/x-icon" />
 
 <!--[if lt IE 9]>
 <script type="text/javascript" src="{% static 'js/html5shiv.js'%}"></script>
@@ -40,7 +40,7 @@
     	<ul class="nav navbar-nav" id="nav1-ul">
             <li class="{%block class-nav-topics%}{%endblock%}"><a href="/topics/list/">{%trans "Topics"%}</a></li>
             <li class="{%block class-nav-archive%}{%endblock%}"><a href="/talks/archive/">{%trans "Archive"%}</a></li>
-            <li class="{%block class-nav-main%}{%endblock%}"><a href="/help/rules/">{%trans "Rules"%}</a></li>
+            <li class="{%block class-nav-main%}{%endblock%}"><a href="/help/rules/">{%trans "Guide"%}</a></li>
     	</ul>
         {%block userpanel%}
             {%if not user.is_authenticated%}
@@ -68,8 +68,8 @@
               	    </a>
               	    <ul class="dropdown-menu">
                         <li><a href="{% url 'logout'%}" id="logout">{%trans "Logout"%}</a></li>
-                        <li><a href="/being/user_detail/{{user.id}}/" target="content">{%trans "Profile"%}</a></li>
-                        <li><a href="#" target="content">{%trans "Talks"%}</a></li>
+                        <li><a href="/being/user_detail/{{user.id}}/">{%trans "Profile"%}</a></li>
+                        <li><a href="/talks/me/">{%trans "Talks"%}</a></li>
               	    </ul>
                 </li>
 	        </ul>
@@ -100,21 +100,19 @@
 			<div class="col-md-3">
 				<ul class="list-unstyled">
 					<li>
-						<h5 class="text-muted">about</h5>
+						<h5 class="text-muted">ABOUT</h5>
 					</li>
                     <li><a href="/help/leiwang/">{%trans "Lei Wang's Group"%}</a></li>
-                    <li><a href="https://giggleliu.github.io/">{%trans "Author"%}</a></li>
-                    <li><a href="/help/numeric_club/">{%trans "Website"%}</a></li>
+                    <li><a href="https://giggleliu.github.io/" target="_new">{%trans "Author"%}</a></li>
+                    <li><a href="/help/numeric_club/">{%trans "Numeric Club"%}</a></li>
 				</ul>
 			</div>
 			<div class="col-md-3">
 				<ul class="list-unstyled">
 					<li>
-						<h5 class="text-muted">help</h5>
+						<h5 class="text-muted">HELP</h5>
 					</li>
-                    <li><a href="/talker/">{%trans "How to give a talk"%}</a></li>
-                    <li><a href="/listener/">{%trans "Requirements to audiences"%}</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#modal-feedback">{%trans "Feed back"%}</a></li>
+                    <li><a href="https://github.com/GiggleLiu/numericclub/issues">{%trans "Feed back"%}</a></li>
 				</ul>
 			</div>
             <div class="col-md-3">

@@ -21,14 +21,27 @@
                 <div class="panel-heading">
                     {%trans "Profile"%}
                     {%ifequal objuser user%}
-                    <span class="badge pull-right"><span class="glyphicon glyphicon-edit"></span><a class="text-primary" data-toggle="modal" href="/being/user_update/" title="{%trans "Modify"%}">{%trans "Modify"%}</a></span>
-                    <span class="badge pull-right" style="margin-right:7px;"><span class="glyphicon glyphicon-edit"></span><a class="text-primary" href="/being/update_password/" title="{%trans "Change Password"%}">{%trans "Change Password"%}</a></span>
+                    <span class="badge pull-right"><span class="glyphicon glyphicon-edit"></span>
+                        <a class="text-primary" data-toggle="modal" href="/being/user_update/" title="{%trans "Modify"%}">{%trans "Modify"%}</a></span>
+                    <span class="badge pull-right" style="margin-right:7px;">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        <a class="text-primary" href="/being/update_password/" title="{%trans "Change Password"%}">{%trans "Change Password"%}
+                        </a>
+                    </span>
                     {%endifequal%}
                 </div>
-                <div class="panel-body" style="background-color:rgb(147,198,260); min-height:220px;"> 
-                    <dl class="dl-horizontal">
+                <div class="panel-body" style="min-height:220px;"> 
+                    <dl>
                         <dt>{%trans "Email"%}</dt><dd><a href="mailto:{{objuser.email}}">{{objuser.email}}</a></dd>
                         <dt>{%trans "Introduction"%}</dt><dd>{{objuser.description}}</dd>
+                        <dt>{%trans "Talks"%}</dt>
+                        <dd>{{talk}}
+                        <ul>
+                        {%for talk in objuser.talk_set.all%}
+                        <li>{{talk.link|safe}}</li>
+                        {%endfor%}
+                        </ul>
+                        </dd>
                     </dl>
                 </div>
             </div>

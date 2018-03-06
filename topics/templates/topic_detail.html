@@ -14,20 +14,20 @@
 	<div class="row">
 		<div class="col-md-8 col-xs-12">
             {%with vote_info=topic.vote_info%}
-            <h3>{%trans "Related talks"%}</h3>
+            <h4>{%trans "Related talks"%}</h3>
             <ul>
             {%for talk in topic.talk_set.all%}
             <li>{{talk.link|safe}}</li>
             {%endfor%}
             </ul>
-            <h3>{%trans "People who like it"%} ({{vote_info.1|length}})</h3>
+            <h4>{%trans "People who like it"%} ({{vote_info.1|length}})</h3>
             <ul>
             {%for v in vote_info.1%}
             <li>{{v.link|safe}}</li>
             {%endfor%}
             </ul>
-            <h3>{%trans "People who dislike it"%} ({{vote_info.2|length}})</h3>
-            <p class='text-muted'>{%trans "We don't list their names here to protect them from being involved into a murdering."%}</p>
+            <h4>{%trans "People who dislike it"%} ({{vote_info.2|length}})</h3>
+            <p class='text-muted'>{%trans "I don't list their names here to prevent them from being involved into a murdering."%}</p>
             {%endwith%}
         </div>
     </div>

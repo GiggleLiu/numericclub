@@ -6,20 +6,25 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 
 from topics.models import Topic
-from .models import Talk, get_current_talk
 from numericclub.utils import get_readme_html
+from being.models import AdvancedUser
+from .models import Talk, get_current_talk
 from . import forms
 
 # Create your views here.
-
-def archive(request):
-    talk_list = Talk.objects.all()
+def archive_user(request, pk):
+    user = AdvancedUser.objects.get(pk=pk)
+    talk_list = user.talk_set.all()
     return render(request, 'archive.html', {'talk_list':talk_list})
+
+@login_required
+def archive_me(request):
+    return HttpResponseRedirect('/talks/user/%d/'%request.user.pk)
 
 def current(request):
     talk = get_current_talk()
-    header, content = get_readme_html(talk.github_url)
     if talk is not None:
+        header, content = get_readme_html(talk.github_url)
         return render(request, 'talk_detail.html',
                 {'talk':talk, 'header':header, 'content':content})
     else:
@@ -100,8 +105,8 @@ def talk_update(request, pk):
 @login_required
 def talk_delete(request, pk):
     if request.method=='GET':
+        talk = Talk.objects.get(pk=pk)
         if request.user == talk.user:
-            talk = Talk.objects.get(pk=pk)
             talk.delete()
             return HttpResponseRedirect('/topics/list/')
         else:
@@ -110,3 +115,25 @@ def talk_delete(request, pk):
                 'talk_new.html',
                 {'error': 'You are not the owner to this talk!', 'form':form, 'update':True},
                 context)
+
+@login_required
+def talk_publish(request, pk):
+    talk = Talk.objects.get(pk=pk)
+    if request.user == talk.user:
+        talk.status = 1
+        talk.save()
+        return HttpResponseRedirect('/')
+    else:
+        return render(request, 'error.html',
+            {'error': 'You are not the owner to this talk!'},)
+
+@login_required
+def talk_unpublish(request, pk):
+    talk = Talk.objects.get(pk=pk)
+    if request.user == talk.user or user.is_superuser:
+        talk.status = 0
+        talk.save()
+        return HttpResponseRedirect('/')
+    else:
+        return render(request, 'error.html',
+            {'error': 'You are not the owner to this talk or an admin!'},)

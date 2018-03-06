@@ -10,6 +10,8 @@
 	<div class="row" style="margin-top: 40px;">
 		<div class="col-md-8 col-xs-12">
             <dl class="dl-horizontal">
+                <dt>{%trans "On Topic"%}</dt>
+                <dd>{{talk.topic.link|safe}}</dd>
                 <dt>{%trans "Github Link"%}</dt>
                 {%if talk.github_url%}
                 <dd><a href="{{talk.github_url|safe}}">{{talk.github_url}}</a></dd>
@@ -18,22 +20,30 @@
                 {%endif%}
                 <dt>{%trans "Date Time"%}</dt>
                 <dd>{{talk.talk_date}}</dd>
-                <dt>{%trans "Taker"%}</dt>
+                <dt>{%trans "Speaker"%}</dt>
                 <dd>{{talk.user.link|safe}}</dd>
                 <dt>{%trans "Location"%}</dt>
                 <dd>{{talk.location}}</dd>
             </dl>
         </div>
     </div>
-    {%ifequal request.user talk.user%}
 	<div class="row" style=" margin-bottom:20px">
 		<div class="col-md-1 col-xs-1">
         </div>
 		<div class="col-md-10 col-xs-10 text-left">
+            {%ifequal request.user talk.user%}
             <a href="/talks/update/{{talk.id}}/" class="btn btn-primary">{%trans "update talk information"%}</a>
+            {%ifequal talk.status 0%}
+            <a href="/talks/publish/{{talk.id}}/" class="btn btn-warning">{%trans "ready"%}</a>
+            {%else%}
+            <a href="/talks/unpublish/{{talk.id}}/" class="btn btn-warning">{%trans "not ready"%}</a>
+            {%endifequal%}
+            {%endifequal%}
+            {%if user.is_superuser%}
+            <a href="/talks/unpublish/{{talk.id}}/" class="btn btn-warning">{%trans "not ready"%}</a>
+            {%endif%}
         </div>
     </div>
-    {%endifequal%}
     <hr class="col-xs-12">
 	<div class="row" style="margin-top:40px;">
     {{content|safe}}

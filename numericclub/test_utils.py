@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '.')
-from numericclub.utils import get_readme, md2html, generate_htmls
+from numericclub.utils import get_readme, md2html
 
 def test_getreadme():
     url = 'https://github.com/GiggleLiu/viznet'
@@ -24,9 +24,5 @@ def test_url2html():
     with open('README.html', 'w') as htmlfile:
         htmlfile.write(htmltext)
 
-def test_template():
-    generate_htmls('markdowns', 'templates')
-
 if __name__ == '__main__':
-    # test_url2html()
-    test_template()
+    test_url2html()
