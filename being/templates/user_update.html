@@ -12,6 +12,7 @@
 				<fieldset>
                     {%if not update%}
                     {{form.email|bootstrap_horizontal}}
+                     <small id="emailHelp" class="help-block col-md-offset-2">This email is visible to others</small>
                     {{form.password|bootstrap_horizontal}}
                     {{form.password2|bootstrap_horizontal}}
                     {%endif%}

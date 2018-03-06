@@ -28,5 +28,4 @@ urlpatterns = [
     path('topics/', include('topics.urls')),
     path('talks/', include('talks.urls')),
     path('being/', include('being.urls')),
-    path('avatar/', include('avatar.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

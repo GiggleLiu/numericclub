@@ -31,14 +31,14 @@ def html2headercontent(htmltext):
 def get_readme_html(url):
     if url is not None and url!='':
         try:
-            if settings.DEBUG:
-                with open('README.html', 'r') as f:
-                    htmltext = f.read()
-                    return html2headercontent(htmltext)
-            else:
-                mdtext = get_readme(url)
-                htmltext = md2html(mdtext)
-                return html2headercontent(htmltext)
+            #if settings.DEBUG:
+            #    with open('README.html', 'r') as f:
+            #        htmltext = f.read()
+            #        return html2headercontent(htmltext)
+            #else:
+            mdtext = get_readme(url)
+            htmltext = md2html(mdtext)
+            return html2headercontent(htmltext)
         except Exception:
             print(traceback.format_exc())
             return '',''

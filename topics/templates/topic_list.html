@@ -10,18 +10,18 @@
     <ul>
     {% for t in topics %}
     {%with vote_info=t.vote_info%}
-    <li>{{t.link|safe}}&nbsp;&nbsp;
+    <li>{{t.link|safe}}<br>
         <a class="badge progress-bar-{%if request.user in vote_info.1%}danger{%else%}info{%endif%}" aria-label="upvote" {%if request.user.is_authenticated%}href="/topics/{{t.id}}/vote/1/"{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%}>
             <span class="glyphicon glyphicon-chevron-up"></span>
             {%with len2=vote_info.2|length%}
             {{vote_info.1|length|sub:len2}}
             {%endwith%}
         </a>
-        <a class="badge progress-bar-{%if request.user in vote_info.2%}danger{%else%}info{%endif%}" aria-label="downvote" type="button" {%if request.user.is_authenticated%}href="/topics/"{{t.id}}/vote/2/{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%}>
+        <a class="badge progress-bar-{%if request.user in vote_info.2%}danger{%else%}info{%endif%}" aria-label="downvote" type="button" {%if request.user.is_authenticated%}href="/topics/{{t.id}}/vote/2/"{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%}>
             <span class="glyphicon glyphicon-chevron-down"></span>
-        </a>&nbsp;&nbsp;
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
         {{t.talk_set.all|length}} {%trans "talks"%}
-        <a {%if request.user.is_authenticated%}href="/talks/new/"{{t.id}}/{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%} class='btn btn-sm'><span class="glyphicon glyphicon-plus">Talk</a>
+        <a {%if request.user.is_authenticated%}href="/talks/new/{{t.id}}/"{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%} class='btn btn-sm'><span class="glyphicon glyphicon-plus">Talk</a>
     </li>
     {%endwith%}
     {% endfor %}

@@ -47,7 +47,7 @@ class Vote(models.Model):
 
 def get_topics_ranked(genre):
     topics = genre.topic_set.all()
-    sorted(topics, key=lambda t:-t.ranking())
+    topics = sorted(topics, key=lambda t:-t.ranking())
     return topics
 
 def newvote(user, topic, kind):
