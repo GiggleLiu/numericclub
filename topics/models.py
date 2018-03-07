@@ -16,7 +16,7 @@ class Topic(models.Model):
     url = models.URLField(max_length=200, null=True, default=None, blank=True)  # the link to 
     add_date = models.DateTimeField('date added')
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET(getadmin))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.text

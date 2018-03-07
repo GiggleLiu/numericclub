@@ -9,7 +9,7 @@ def initialize():
     admin = 'cacate'
     if not getuserbyname(admin):
         user = newuser(truename=admin, password='liujinguo',
-                email='cacate0129@iphy.ac.cn', description="I am the boss!", avatar=None)
+                email='aadddss@sina.com', description="I am the boss!", avatar=None)
         user.is_staff = True
         user.is_superuser = True
         user.save()

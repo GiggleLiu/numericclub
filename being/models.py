@@ -48,10 +48,11 @@ class AdvancedUser(AbstractBaseUser, PermissionsMixin):
         return '<a href="/being/%d/">%s</a>'%(self.id, self.truename)
 
     def save(self, *args, **kwargs):
-
-        if not self.make_thumbnail():
+        try:
+            self.make_thumbnail()
+        except:
             # set to a default thumbnail
-            raise Exception('Could not create thumbnail - is the file type valid?')
+            print('Could not create thumbnail - is the file type valid?')
         super(AdvancedUser, self).save(*args, **kwargs)
 
     def make_thumbnail(self):
@@ -91,7 +92,7 @@ def getuserbyname(name):
         return None
 
 def getadmin():
-    return getuserbyname('cacate')
+    return AdvancedUser.objects.get(email='aadddss@sina.com')
 
 def newuser(truename, password, email, description, avatar):
     user = AdvancedUser(truename=truename, email=email, description=description, avatar=avatar)
