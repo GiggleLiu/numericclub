@@ -1,11 +1,11 @@
 # Lei Wang's Group at IOP-CAS
-> We are a group of people instested in understanding the physical world via computation. 
+> We are a group of geeks interested in understanding the Life, the Universe and Everything  via computation. 
 
 ## Members
 <dl>
 <dt> Lei Wang</dt><dd>-</dd>
 <dt> Jin-Guo Liu</dt><dd>Quantum data scientist.</dd>
-<dt>Shuo-Hui Li</dt><dd>King of normalization flow.</dd>
+<dt>Shuo-Hui Li</dt><dd>King of normalizing flow.</dd>
 <dt>Yue-Shui Zhang</dt><dd>祖国未来的花朵。</dd>
 <dt>Lu Zhao</dt><dd>祖国未来的花蕾。</dd>
 </dl>

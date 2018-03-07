@@ -2,7 +2,7 @@
 <hr>
 A journal club for scientific computation, read a paper, and code it!
 
-* Talkers are required to give a code example to show how it works when sharing a paper.
+* Talkers are required to present a code example to show how it works when sharing a paper.
 * There are no listeners, only practitioners, bring your laptop to enjoy the talk!
 
 ### Motivation
