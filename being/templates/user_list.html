@@ -6,13 +6,13 @@
     <hr>
     {%for user in user_list%}
     {% if forloop.first %}<div class="row"><div class="col-md-8 col-xs-12 col-md-offset-2">{% endif %}
-    <div class="col-md-3 col-xs-3 float-left">
+    <div class="col-md-3 col-xs-3">
         <a href="/being/{{user.id}}/" class="thumbnail img-responsive">
             <img alt="{{user.truename}}" src="{%if user.thumbnail%}{{user.thumbnail.url}}{%else%}/static/img/default_avatar.png{%endif%}">
             <div class="desc"><h3 class="badge progress-bar-info">{{user.truename}}</h3></div>
         </a>
     </div>
-    {% if forloop.counter|divisibleby:4 %}</div><div class="row"><div class="col-md-8 col-xs-12 col-md-offset-2">{% endif %}
+    {% if forloop.counter|divisibleby:4 %}</div></div><div class="row"><div class="col-md-8 col-xs-12 col-md-offset-2">{% endif %}
         {% if forloop.last %}</div></div>{% endif %}
     {% endfor %}
 </div>

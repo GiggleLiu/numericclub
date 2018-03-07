@@ -7,3 +7,4 @@ deprecated/
 backup/
 db.sqlite3
 media/
+migrations/
