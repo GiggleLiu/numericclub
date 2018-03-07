@@ -5,3 +5,5 @@ nohup.out
 deprecated/
 .cache/
 backup/
+db.sqlite3
+media/

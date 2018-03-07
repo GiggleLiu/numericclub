@@ -130,3 +130,5 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
 AUTH_USER_MODEL = 'being.AdvancedUser'
+
+THUMB_SIZE = (100,100)

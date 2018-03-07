@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
+from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
@@ -9,11 +10,19 @@ from django.http import HttpResponseRedirect
 from . import forms
 from .models import *
 
-def user_detail(request, user_id):
-    if request.method == 'GET':
-        context = RequestContext(request)
-        objuser = AdvancedUser.objects.get(pk=user_id)
-        return render(request, 'user_detail.html', {'objuser': objuser})
+class DetailView(generic.DetailView):
+    context_object_name = 'objuser'
+    model = AdvancedUser
+    template_name = 'user_detail.html'
+
+class ListView(generic.ListView):
+    template_name = 'user_list.html'
+    context_object_name = 'user_list'
+
+    def get_queryset(self):
+        user_list = [user for user in AdvancedUser.objects.all() if not user.is_staff]
+        user_list.sort(key=lambda user:-user.talk_set.count())
+        return user_list
 
 @csrf_exempt
 def login(request):
@@ -98,7 +107,7 @@ def user_update(request):
             # Save the user's form data to the database.
             updateuser(user, data['description'], data['avatar'])
             # Update our variable to tell the template registration was successful.
-            return HttpResponseRedirect('/being/user_detail/' + str(user.id))
+            return HttpResponseRedirect('/being/%d/'%user.id)
         else:
             error = user_form.errors
 
@@ -127,7 +136,7 @@ def update_password(request):
                 updatepassword(user, old, new)
                 auth.login(request, user)
                 # Update our variable to tell the template registration was successful.
-                return HttpResponseRedirect('/being/user_detail/' + str(user.id))
+                return HttpResponseRedirect('/being/%d/'%user.id)
             else:
                 error = 'initial password incorrect!'
 

@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import Permission, PermissionsMixin
 from django.core.mail import send_mail
 from django.contrib.contenttypes.models import ContentType
+from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
+from numericclub.settings import THUMB_SIZE   
+import os.path
 
 from django.contrib.auth.base_user import AbstractBaseUser
 from .managers import UserManager
@@ -10,7 +15,9 @@ class AdvancedUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     truename = models.CharField(max_length=64)
     credit = models.IntegerField(default=0)
-    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
+    avatar = models.ImageField(upload_to='avatars', null=True, blank=True)
+    thumbnail = models.ImageField(upload_to='avatar_thumbs', editable=False, null=True, blank=True)
+
     description = models.CharField(null=True, blank=True, max_length=512)
     is_admin = models.BooleanField(default=False)
 
@@ -38,7 +45,43 @@ class AdvancedUser(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def link(self):
-        return '<a href="/being/user_detail/%d/">%s</a>'%(self.id, self.truename)
+        return '<a href="/being/%d/">%s</a>'%(self.id, self.truename)
+
+    def save(self, *args, **kwargs):
+
+        if not self.make_thumbnail():
+            # set to a default thumbnail
+            raise Exception('Could not create thumbnail - is the file type valid?')
+        super(AdvancedUser, self).save(*args, **kwargs)
+
+    def make_thumbnail(self):
+        image = Image.open(self.avatar)
+        image.thumbnail(THUMB_SIZE, Image.ANTIALIAS)
+
+        thumb_name, thumb_extension = os.path.splitext(self.avatar.name)
+        thumb_extension = thumb_extension.lower()
+
+        thumb_filename = thumb_name + '_thumb' + thumb_extension
+
+        if thumb_extension in ['.jpg', '.jpeg']:
+            FTYPE = 'JPEG'
+        elif thumb_extension == '.gif':
+            FTYPE = 'GIF'
+        elif thumb_extension == '.png':
+            FTYPE = 'PNG'
+        else:
+            return False    # Unrecognized file type
+
+        # Save thumbnail to in-memory file as BytesIO
+        temp_thumb = BytesIO()
+        image.save(temp_thumb, FTYPE)
+        temp_thumb.seek(0)
+
+        # set save=False, otherwise it will run in an infinite loop
+        self.thumbnail.save(thumb_filename, ContentFile(temp_thumb.read()), save=False)
+        temp_thumb.close()
+
+        return True
 
 def getuserbyname(name):
     try:

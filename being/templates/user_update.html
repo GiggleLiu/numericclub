@@ -25,7 +25,7 @@
 			        <div class="form-group">
 			        	<div class="col-md-offset-2 col-md-10">
                             {%if update%}
-                            <a href="/being/user_detail/{{request.user.id}}/" class="btn btn-default">{%trans "cancel"%}</a>
+                            <a href="/being/{{request.user.id}}/" class="btn btn-default">{%trans "cancel"%}</a>
                             {%else%}
                             <a href="/" class="btn btn-default">{%trans "cancel"%}</a>
                             {%endif%}
