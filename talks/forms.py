@@ -16,7 +16,7 @@ class NewTalkForm(forms.ModelForm):
 class UpdateTalkForm(forms.ModelForm):
     class Meta:
         model = Talk
-        fields = ('title', 'talk_date', 'github_url')
+        fields = ('title', 'talk_date', 'github_url', 'location')
         widgets = {
                 'talk_date': DateTimePicker(options={"format": "YYYY-MM-DD HH:mm",
                                                            }),

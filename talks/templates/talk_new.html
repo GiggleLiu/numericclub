@@ -18,6 +18,9 @@
 				<fieldset>
                     {{form.title|bootstrap_horizontal}}
                     {{form.talk_date|bootstrap_horizontal}}
+                    {%if update%}
+                    {{form.location|bootstrap_horizontal}}
+                    {%endif%}
                     {{form.github_url|bootstrap_horizontal}}
 			        <div class="form-group">
 			        	<div class="col-md-offset-3 col-md-9 text-right">
