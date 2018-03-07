@@ -1,14 +1,16 @@
 # Lei Wang's Group
-> quoted desc
+> 关于本组的介绍
 
 ## Member List
 <dl>
-<dt>Lei Wang</dt><dd>desc</dd>
-<dt> Jin-Guo Liu</dt><dd>desc</dd>
-<dt>Shuo-Hui Li</dt><dd>desc</dd>
+<dt>Lei Wang</dt><dd>-</dd>
+<dt> Jin-Guo Liu</dt><dd>Quantum data scientist.</dd>
+<dt>Shuo-Hui Li</dt><dd>King to normalization flow.</dd>
+<dt>Yue-Shui Zhang</dt><dd>祖国未来的花朵。</dd>
+<dt>Ge Zhao</dt><dd>祖国未来的花蕾。</dd>
 </dl>
 
-![](/static/img/1.png)
+![](/static/img/leiwanggroup.png)
 
 ## Publication List
 
