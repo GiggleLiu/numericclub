@@ -14,6 +14,9 @@ def help(request, page):
     header, content = html2headercontent(htmltext)
     
     if header is not None and header!='':
-        return render(request, 'headercontent.html', {'header':header, 'content':content})
+        template = 'headercontent.html'
+        if page == 'rules':
+            template = 'rules_template.html'
+        return render(request, template, {'header':header, 'content':content})
     else:
         return render(request, 'error.html', context={'error':'Page not found!'})
