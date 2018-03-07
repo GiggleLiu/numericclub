@@ -1,5 +1,6 @@
 # Setup Online [Jupyter Notebook](http://jupyter.org/) with Colab
 Online means you can try CUDA programming without having an local NVIDIA GPU.
+
 1. Sign up and sign in [Google drive](https://drive.google.com/)
 2. Connect Google drive with [Google Colaboratory](https://colab.research.google.com)
     - right click on google drive page
@@ -13,5 +14,6 @@ Online means you can try CUDA programming without having an local NVIDIA GPU.
 
 ### To use GPU
 Edit (on Menu Bar)
+
 * Notebook settings
     * Hardware accelerator -> Choose GPU
