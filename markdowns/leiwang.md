@@ -1,23 +1,21 @@
-# Lei Wang's Group
-> 关于本组的介绍
+# Lei Wang's Group at IOP-CAS
+> We are a group of people instested in understanding the physical world via computation. 
 
-## Member List
+## Members
 <dl>
-<dt>Lei Wang</dt><dd>-</dd>
+<dt> Lei Wang</dt><dd>-</dd>
 <dt> Jin-Guo Liu</dt><dd>Quantum data scientist.</dd>
-<dt>Shuo-Hui Li</dt><dd>King to normalization flow.</dd>
+<dt>Shuo-Hui Li</dt><dd>King of normalization flow.</dd>
 <dt>Yue-Shui Zhang</dt><dd>祖国未来的花朵。</dd>
-<dt>Ge Zhao</dt><dd>祖国未来的花蕾。</dd>
+<dt>Lu Zhao</dt><dd>祖国未来的花蕾。</dd>
 </dl>
 
 ![](/static/img/leiwanggroup.png)
 
-## Publication List
+## Recent Highlights
 
-* pub 1
-* pub 2
-* pub 3
-* pub 4
+* **Shuo-Hui Li, Lei Wang**, *Neural Network Renormalization Group*, [1802.02840](https://arxiv.org/abs/1802.02840) 
+* **Zi Cai, Jinguo Liu**, *Approximating quantum many-body wave-functions using artificial neural networks*, [1704.05148](https://arxiv.org/abs/1704.05148)
 
 ## Position
 No Open Position Yet.
