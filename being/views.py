@@ -156,5 +156,5 @@ def user_delete(request):
     context = RequestContext(request)
     if request.method == 'GET':
         user = request.user
-        deleteuser(user)
+        user.delete()
         return HttpResponseRedirect('/')
