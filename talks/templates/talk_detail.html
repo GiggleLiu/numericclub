@@ -31,13 +31,14 @@
 	    <div class="col-md-8 col-xs-12 text-right">
             {%ifequal request.user talk.user%}
             <a href="/talks/update/{{talk.id}}/" class="btn btn-primary">{%trans "update talk information"%}</a>
-            {%ifequal talk.status 0%}
-            <a href="/talks/publish/{{talk.id}}/" class="btn btn-warning">{%trans "ready"%}</a>
-            {%else%}
-            <a href="/talks/unpublish/{{talk.id}}/" class="btn btn-warning">{%trans "not ready"%}</a>
+                {%ifequal talk.status 0%}
+                <a href="/talks/publish/{{talk.id}}/" class="btn btn-warning">{%trans "ready"%}</a>
+                {%endifequal%}
+                {%ifequal talk.status 1%}
+                <a href="/talks/unpublish/{{talk.id}}/" class="btn btn-warning">{%trans "not ready"%}</a>
+                {%endifequal%}
             {%endifequal%}
-            {%endifequal%}
-            {%if user.is_superuser%}
+            {%if user.is_superuser and talk.status == 1%}
             <a href="/talks/unpublish/{{talk.id}}/" class="btn btn-warning">{%trans "not ready"%}</a>
             {%endif%}
         </div>

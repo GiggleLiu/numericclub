@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.core.cache import cache
+from numericclub.utils import get_readme_html
 
 from topics.models import Topic
 from being.models import getadmin
@@ -44,5 +46,13 @@ def get_current_talk():
             return t
         else:
             return None
+
+def headercontent4talk(talk):
+    cache_id = 'headercontent-talk-%d'%talk.id
+    res = cache.get(cache_id)
+    if res is None:
+        res = get_readme_html(talk.github_url)
+        cache.set(cache_id, res, 600)
+    return res
 
 # TODO: payments
