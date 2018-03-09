@@ -6,9 +6,8 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 
 from topics.models import Topic
-from numericclub.utils import get_readme_html
 from being.models import AdvancedUser
-from .models import Talk, get_current_talk
+from .models import Talk, get_current_talk, headercontent4talk
 from . import forms
 
 # Create your views here.
@@ -24,9 +23,7 @@ def archive_me(request):
 def current(request):
     talk = get_current_talk()
     if talk is not None:
-        header, content = get_readme_html(talk.github_url)
-        return render(request, 'talk_detail.html',
-                {'talk':talk, 'header':header, 'content':content})
+        return HttpResponseRedirect('/talks/%d/'%talk.id)
     else:
         # no talk page.
         return render(request, 'notalk.html')
@@ -40,7 +37,7 @@ class ListView(generic.ListView):
 
 def talk_detail(request, pk):
     talk = Talk.objects.get(pk=pk)
-    header, content = get_readme_html(talk.github_url)
+    header, content = headercontent4talk(talk)
     if talk is not None:
         return render(request, 'talk_detail.html',
                 {'talk':talk, 'header':header, 'content':content})
