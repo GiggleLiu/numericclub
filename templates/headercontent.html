@@ -1,5 +1,5 @@
 {%extends 'base.html'%}
-{%load i18n static%}
+{%load i18n static cache%}
 {%block script%}
 {{header|safe}}
 <link rel="stylesheet" href="{%static "css/template.css"%}" />
@@ -9,7 +9,9 @@
 <div class="container" style="min-height:500px;">
     <h1>{{title}}</h1>
 	<div class="row" style="margin-top: 40px;">
+        {%cache 600 content%}
         {{content|safe}}
+        {%endcache%}
     </div>
 </div>
 {%endblock%}
