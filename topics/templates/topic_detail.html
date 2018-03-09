@@ -2,7 +2,7 @@
 {%load i18n static%}
 {%block content%}
 <div class="container" style="min-height:500px;">
-    <h1>{{topic}}</h1>
+    <h1>{{topic.text|urlize}}</h1>
     {%if user.is_authenticated%}
     <div class='row' style="margin-bottom: 20px;">
         <div class="col-md-8 col-xs-12">

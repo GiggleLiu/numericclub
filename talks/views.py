@@ -3,6 +3,7 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.views.decorators.cache import cache_page
 from django.utils import timezone
 
 from topics.models import Topic
@@ -21,6 +22,7 @@ def archive_user(request, pk):
 def archive_me(request):
     return HttpResponseRedirect('/talks/user/%d/'%request.user.pk)
 
+@cache_page(300)
 def current(request):
     talk = get_current_talk()
     if talk is not None:
