@@ -1,5 +1,6 @@
 import urllib.request, traceback
 import pypandoc
+from django.core.cache import cache
 import re, os, glob
 
 from . import settings
@@ -44,3 +45,15 @@ def get_readme_html(url):
             return '',''
     else:
         return '',''
+
+def headercontent4page(page):
+    cache_id = 'headercontent-help-%s'%page
+    res = cache.get(cache_id)
+    if res is None:
+        source_folder, target_folder = 'markdowns', 'templates'
+        with open(os.path.join(source_folder, page+'.md'), 'r') as f:
+            mdtext = f.read()
+        htmltext = md2html(mdtext)
+        res = html2headercontent(htmltext)
+        cache.set(cache_id, res, 600)
+    return res

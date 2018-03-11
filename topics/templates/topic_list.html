@@ -28,6 +28,8 @@
     {% endfor %}
     {%if request.user.is_authenticated%}
     <li><a href="/topics/new/{{g.id}}/">New Topic</a></li>
+    {%else%}
+    <li><a href="#modal-login" data-toggle="modal" data-target="#modal-login">Sign in to add topics</a></li>
     {%endif%}
     </ul>
     {% endfor %}

@@ -1,15 +1,30 @@
 {%extends 'base.html'%}
-{%load i18n static%}
+{%load i18n static mathfilters%}
 {%block content%}
 <div class="container" style="min-height:500px;">
-    <h1>{{topic}}</h1>
-    {%if user.is_authenticated%}
-    <div class='row' style="margin-bottom: 20px;">
+    <h1>{{topic.text|urlize}}</h1>
+    <hr>
+    <div class="row">
         <div class="col-md-8 col-xs-12">
-            <a href="/topics/update/{{topic.id}}/" class="btn btn-primary">update this topic</a>
-        </div>
-    </div>
+    {%with vote_info=topic.vote_info%}
+        <a class="badge progress-bar-{%if request.user in vote_info.1%}danger{%else%}info{%endif%}" aria-label="upvote" {%if request.user.is_authenticated%}href="/topics/{{topic.id}}/vote/1/"{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%}>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+            {%with len2=vote_info.2|length%}
+            {{vote_info.1|length|sub:len2}}
+            {%endwith%}
+        </a>
+        <a class="badge progress-bar-{%if request.user in vote_info.2%}danger{%else%}info{%endif%}" aria-label="downvote" type="button" {%if request.user.is_authenticated%}href="/topics/{{topic.id}}/vote/2/"{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%}>
+            <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+        {{topic.talk_set.count}} {%trans "talks"%}
+        <a {%if request.user.is_authenticated%}href="/talks/new/{{topic.id}}/"{%else%} href="#modal-login" data-toggle="modal" data-target="#modal-login"{%endif%} class='btn btn-sm'><span class="glyphicon glyphicon-plus">Talk</a>
+    {%endwith%}
+    {%if user.is_authenticated%}
+        <a href="/topics/update/{{topic.id}}/" class="pull-right btn btn-primary">update this topic</a>
     {%endif%}
+    </div>
+    </div>
+ 
     <hr class="col-xs-12">
 	<div class="row">
 		<div class="col-md-8 col-xs-12">
@@ -32,7 +47,7 @@
             {%endif%}
             {%if vote_info.2%}
             <h4>{%trans "People who dislike it"%} ({{vote_info.2|length}})</h3>
-            <p class='text-muted'>{%trans "I don't list their names here to prevent them from being involved into a murdering."%}</p>
+            <p class='text-muted'>{%trans "I don't list their names here to prevent them from being hated."%}</p>
             {%endif%}
             {%endwith%}
         </div>

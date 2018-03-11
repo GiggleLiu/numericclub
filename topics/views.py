@@ -23,7 +23,8 @@ def vote(request, pk, kind):
     user = request.user
     topic = Topic.objects.get(pk=pk)
     newvote(user, topic, kind=kind)
-    return HttpResponseRedirect('/topics/list/')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))
+    #return HttpResponseRedirect('/topics/list/')
 
 class DetailView(generic.DetailView):
     model = Topic

@@ -34,12 +34,22 @@
                     <dl>
                         <dt>{%trans "Email"%}</dt><dd><a href="mailto:{{objuser.email}}">{{objuser.email}}</a></dd>
                         <dt>{%trans "Introduction"%}</dt><dd>{{objuser.description}}</dd>
+                        <dt>{%trans "Interest"%}</dt><dd>
+                        <ul>
+                        {%for vote in objuser.vote_set.all%}
+                        {%ifequal vote.kind 1%}
+                        <li>{{vote.topic.link|safe}}</li>
+                        {%endifequal%}
+                        {%endfor%}
+                        </ul>
+                        </dd>
                         <dt>{%trans "Talks"%}</dt>
                         <dd>{{talk}}
                         <ul>
                         {%for talk in objuser.talk_set.all%}
                         <li>{{talk.link|safe}}</li>
                         {%endfor%}
+                        {%if not objuser.talk_set%}<li>-</li>{%endif%}
                         </ul>
                         </dd>
                     </dl>
