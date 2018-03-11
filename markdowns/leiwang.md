@@ -1,14 +1,14 @@
 # Lei Wang's Group at IOP-CAS
-> We are a group of geeks interested in seeking the answer to Life, the Universe and Everything via Computation.  
+> We are a group of geeks interested in seeking for the answer to Life, the Universe and Everything via Computation.  
 
 ## Members
 <dl>
 <dt> [Lei Wang](http://wangleiphy.github.io/) </dt><dd>-</dd>
 <dt> Jin-Guo Liu</dt><dd>Quantum data scientist.</dd>
-<dt>Wei Tang</dt><dd>-</dd>
-<dt>Shuo-Hui Li</dt><dd>King of normalizing flow.</dd>
-<dt>Yue-Shui Zhang</dt><dd>祖国未来的花朵。</dd>
-<dt>Lu Zhao</dt><dd>祖国未来的花蕾。</dd>
+<dt> Shuo-Hui Li</dt><dd>King of normalizing flow.</dd>
+<dt> Wei Tang</dt><dd>-</dd>
+<dt> Yue-Shui Zhang</dt><dd>祖国未来的花朵。</dd>
+<dt> Lu Zhao</dt><dd>祖国未来的花蕾。</dd>
 </dl>
 
 ![](/static/img/leiwanggroup.png)
@@ -21,4 +21,5 @@
 * **Zi Cai, Jinguo Liu**, *Approximating quantum many-body wave-functions using artificial neural networks*, [1704.05148](https://arxiv.org/abs/1704.05148)
 
 ## Position
+
 No Open Position Yet.
