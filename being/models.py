@@ -47,6 +47,13 @@ class AdvancedUser(AbstractBaseUser, PermissionsMixin):
     def link(self):
         return '<a href="/being/%d/">%s</a>'%(self.id, self.truename)
 
+    def interest(self):
+        interest_list = []
+        for vote in self.vote_set.all():
+            if vote.kind == 1:
+                interest_list.append(vote.topic)
+        return interest_list
+
     def save(self, *args, **kwargs):
         try:
             self.make_thumbnail()

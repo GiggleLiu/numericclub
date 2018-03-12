@@ -47,10 +47,10 @@ def get_current_talk():
         else:
             return None
 
-def headercontent4talk(talk):
+def headercontent4talk(talk, reload=False):
     cache_id = 'headercontent-talk-%d'%talk.id
     res = cache.get(cache_id)
-    if res is None:
+    if res is None or reload:
         res = get_readme_html(talk.github_url)
         cache.set(cache_id, res, 600)
     return res

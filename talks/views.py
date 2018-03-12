@@ -89,6 +89,7 @@ def talk_update(request, pk):
             talk.talk_date = data['talk_date']
             talk.github_url = data['github_url']
             talk.save()
+            headercontent4talk(talk, reload=True)
             return HttpResponseRedirect('/talks/%d/'%pk)
         else:
             error = form.errors

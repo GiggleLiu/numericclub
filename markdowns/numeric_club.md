@@ -1,4 +1,9 @@
 # Numeric Club
+
+> Talk is cheap. Show me the code.
+>
+> <footer class="blockquote-footer"><cite title="Source Title">Linus Torvalds</cite></footer>
+
 <hr>
 A journal club for scientific computation, read a paper, and code it!
 

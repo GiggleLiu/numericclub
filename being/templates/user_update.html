@@ -12,13 +12,17 @@
 				<fieldset>
                     {%if not update%}
                     {{form.email|bootstrap_horizontal}}
-                     <small id="emailHelp" class="help-block col-md-offset-2">This email is visible to others</small>
+                     <small id="emailHelp" class="help-block col-md-offset-2">This email is visible to other registered users</small>
                     {{form.password|bootstrap_horizontal}}
                     {{form.password2|bootstrap_horizontal}}
                     {%endif%}
                     <span id="p-alert" class="help-block col-md-offset-2"></span>
 
                     {{form.truename|bootstrap_horizontal}}
+                    {%if not update%}
+                    <hr>
+                    <p class="col-md-offset-2 help-block text-center">{%trans "optional fields"%}</p>
+                    {%endif%}
                     {{form.avatar|bootstrap_horizontal}}
                     {{form.description|bootstrap_horizontal}}
 					

@@ -32,25 +32,40 @@
                 </div>
                 <div class="panel-body" style="min-height:220px;"> 
                     <dl>
-                        <dt>{%trans "Email"%}</dt><dd><a href="mailto:{{objuser.email}}">{{objuser.email}}</a></dd>
-                        <dt>{%trans "Introduction"%}</dt><dd>{{objuser.description}}</dd>
-                        <dt>{%trans "Interest"%}</dt><dd>
+                        <dt>{%trans "Email"%}</dt>
+                        {%if request.user.is_authenticated%}
+                        <dd><a href="mailto:{{objuser.email}}">{{objuser.email}}</a></dd>
+                        {%else%}
+                        <dd><a href="#modal-login" data-toggle="modal" data-target="#modal-login">{%trans "Sign in to see"%}</a></dd>
+                        {%endif%}
+
+                        <dt>{%trans "Introduction"%}</dt><dd>{{objuser.description|default:"&emsp;-"}}</dd>
+
+                        <dt>{%trans "Interests"%}</dt><dd>
+                        {%with interest=objuser.interest%}
+                        {%if interest%}
                         <ul>
-                        {%for vote in objuser.vote_set.all%}
-                        {%ifequal vote.kind 1%}
-                        <li>{{vote.topic.link|safe}}</li>
-                        {%endifequal%}
+                        {%for topic in interest%}
+                        <li>{{topic.link|safe}}</li>
                         {%endfor%}
                         </ul>
+                        {%else%}
+                        &emsp;-
+                        {%endif%}
+                        {%endwith%}
                         </dd>
+
                         <dt>{%trans "Talks"%}</dt>
-                        <dd>{{talk}}
+                        <dd>
+                        {%ifnotequal objuser.talk_set.count 0%}
                         <ul>
                         {%for talk in objuser.talk_set.all%}
                         <li>{{talk.link|safe}}</li>
                         {%endfor%}
-                        {%if not objuser.talk_set%}<li>-</li>{%endif%}
                         </ul>
+                        {%else%}
+                        &emsp;-
+                        {%endifnotequal%}
                         </dd>
                     </dl>
                 </div>
