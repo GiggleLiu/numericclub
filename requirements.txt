@@ -1,6 +1,6 @@
-django = 2.0.3
-django-mathfilters=0.4.0
-pypandoc=1.4
-django-bootstrap-form=3.3
-Pillow=5.0.0
-git+https://github.com/pbucher/django-bootstrap-datepicker.git
+django == 2.0.3
+django-mathfilters==0.4.0
+pypandoc==1.4
+django-bootstrap-form==3.3
+Pillow==5.0.0
+git+https://github.com/inducer/django-bootstrap3-datetimepicker.git

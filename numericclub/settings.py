@@ -26,7 +26,7 @@ SECRET_KEY = 'w_l10&nehl^++%b&l+jo=7@@$2ybx3dq=w*!%pk5xzvm-@wlut'
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.v2nobel.com', '121.40.82.247']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.v2nobel.com', '121.40.82.247', '172.96.192.67', '.v2nobel.xyz']
 
 
 # Application definition
