@@ -37,6 +37,9 @@ class ListView(generic.ListView):
 
 def talk_detail(request, pk):
     talk = Talk.objects.get(pk=pk)
+    if talk.talk_date<timezone.now():
+        talk.status = 2
+        talk.save()
     header, content = headercontent4talk(talk)
     if talk is not None:
         return render(request, 'talk_detail.html',
