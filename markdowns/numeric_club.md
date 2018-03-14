@@ -26,7 +26,9 @@ For those who contributed to this project
 * Lei Wang (王磊)
 * Pan Zhang (张潘)
 
-### Website
-* Jin-Guo Liu (刘金国)
-* March 6th, 2018
-* [Github Repo](https://github.com/GiggleLiu/numericclub)
+### About Website
+<dl>
+<dt>Developer</dt><dd>Jin-Guo Liu (刘金国)</dd>
+<dt>Starting Time</dt><dd>March 6th, 2018</dd>
+<dt>Github Repo</dt><dd>[https://github.com/GiggleLiu/numericclub](https://github.com/ProjectQ-Framework/ProjectQ)<dd>
+</dl>

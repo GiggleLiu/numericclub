@@ -33,3 +33,4 @@ knock the door of Room 812 (Mr. Wang)/828 (Mr. Meng) to ask for help, if no resp
 
 ### Useful Links
 * [How to setup online jupyter notebook with colab](/help/colab/)
+* [How to setup local python environment](/help/python_setup/)

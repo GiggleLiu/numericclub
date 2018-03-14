@@ -4,14 +4,16 @@
 ## Members
 <dl>
 <dt> [Lei Wang](http://wangleiphy.github.io/) </dt><dd>-</dd>
-<dt> Jin-Guo Liu</dt><dd>Quantum data scientist.</dd>
+<dt> [Jin-Guo Liu](https://giggleliu.github.io/)</dt><dd>Quantum data scientist.</dd>
 <dt> Shuo-Hui Li</dt><dd>King of normalizing flow.</dd>
 <dt> Wei Tang</dt><dd>-</dd>
-<dt> Yue-Shui Zhang</dt><dd>祖国未来的花朵。</dd>
-<dt> Lu Zhao</dt><dd>祖国未来的花蕾。</dd>
+<dt> Yue-Shui Zhang</dt><dd>He looks like a pacifist.</dd>
+<dt> Lu Zhao</dt><dd>A normal fat yong man who is keeping growing.</dd>
 </dl>
 
 ![](/static/img/leiwanggroup.png)
+
+![](/static/img/leiwanggroup-2.png)
 
 ## Recent Highlights
 
