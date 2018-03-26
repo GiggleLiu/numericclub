@@ -30,5 +30,5 @@ For those who contributed to this project
 <dl>
 <dt>Developer</dt><dd>Jin-Guo Liu (刘金国)</dd>
 <dt>Starting Time</dt><dd>March 6th, 2018</dd>
-<dt>Github Repo</dt><dd>[https://github.com/GiggleLiu/numericclub](https://github.com/ProjectQ-Framework/ProjectQ)<dd>
+<dt>Github Repo</dt><dd>[https://github.com/GiggleLiu/numericclub](https://github.com/GiggleLiu/numericclub)<dd>
 </dl>

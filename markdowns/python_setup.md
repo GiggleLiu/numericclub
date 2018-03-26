@@ -26,7 +26,7 @@ List of packages that you `may` need
 
 3. read a jupyter notebook to get a feeling of scientific programming, e.g. this repository https://github.com/GiggleLiu/marburg/
 4. read a decent python library, learn the **project setup**, **PEP8 coding style**, **google style documentation** and **unit testing**.
-e.g. this one https://github.com/ProjectQ-Framework/ProjectQ
+e.g. this one [https://github.com/ProjectQ-Framework/ProjectQ](https://github.com/ProjectQ-Framework/ProjectQ)
 
 ### How to learn python
 Remember, **learn by use**.
