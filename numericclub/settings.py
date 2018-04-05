@@ -133,10 +133,29 @@ AUTH_USER_MODEL = 'being.AdvancedUser'
 
 THUMB_SIZE = (100,100)
 
+#### EMAIL #####
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'Server <server@v2nobel.com>'
+EMAIL_BLOCK_LIST = ['aadddss@sina.com', 'dfc@dfc.com']
+
+# Local
+#EMAIL_USE_TLS = False
+#EMAIL_HOST = 'localhost'
+#EMAIL_HOST_USER = ''
+#EMAIL_HOST_PASSWORD = ''
+#DEFAULT_FROM_EMAIL = 'Server <server@v2nobel.com>'
+
+# QQ
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_HOST_USER = '602668429@qq.com'
+EMAIL_HOST_PASSWORD = 'jnbxjmmfjmsgbfbj'
+DEFAULT_FROM_EMAIL = 'NumericClub <602668429@qq.com>'
+
+# Sina
+#EMAIL_USE_TLS = False
+#EMAIL_HOST = 'smtp.sina.com'
+#EMAIL_HOST_USER = 'aadddss@sina.com'
+#EMAIL_HOST_PASSWORD = 'cacate0129'
+#DEFAULT_FROM_EMAIL = "NumericClub <aadddss@sina.com>"
