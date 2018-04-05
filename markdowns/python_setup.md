@@ -29,7 +29,5 @@ List of packages that you `may` need
 e.g. this one [https://github.com/ProjectQ-Framework/ProjectQ](https://github.com/ProjectQ-Framework/ProjectQ)
 
 ### How to learn python
-Remember, **learn by use**.
-
-To learn python, I suggest you to solve the tasks in notebooks (**step 3**),
+To learn python, I suggest you to **learn by use**, e.g. solve the tasks in notebooks (**step 3**),
 or build some quantum circuit in Neilson's quantum computation book using **ProjectQ**.
