@@ -121,10 +121,21 @@ def talk_publish(request, pk):
     if request.user == talk.user:
         talk.status = 1
         talk.save()
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/talks/%d/'%pk)
     else:
         return render(request, 'error.html',
             {'error': 'You are not the owner to this talk!'},)
+
+@login_required
+def talk_inform(request, pk):
+    talk = Talk.objects.get(pk=pk)
+    if request.user == talk.user:
+        talk.inform()
+        return HttpResponseRedirect('/talks/%d/'%pk)
+    else:
+        return render(request, 'error.html',
+            {'error': 'You are not the owner to this talk!'},)
+
 
 @login_required
 def talk_unpublish(request, pk):
@@ -132,7 +143,7 @@ def talk_unpublish(request, pk):
     if request.user == talk.user or request.user.is_superuser:
         talk.status = 0
         talk.save()
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/talks/%d/'%pk)
     else:
         return render(request, 'error.html',
             {'error': 'You are not the owner to this talk or an admin!'},)

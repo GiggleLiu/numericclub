@@ -24,6 +24,7 @@ urlpatterns = [
     path('new/<int:topic_id>/', views.talk_new, name='new'),
     path('delete/<int:pk>/', views.talk_delete, name='delete'),
     path('publish/<int:pk>/', views.talk_publish, name='publish'),
+    path('inform/<int:pk>/', views.talk_inform, name='inform'),
     path('unpublish/<int:pk>/', views.talk_unpublish, name='unpublish'),
     path('update/<int:pk>/', views.talk_update, name='update'),
     path('<int:pk>/', views.talk_detail, name='detail'),

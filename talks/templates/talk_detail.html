@@ -35,6 +35,7 @@
                 <a href="/talks/publish/{{talk.id}}/" class="btn btn-warning">{%trans "ready"%}</a>
                 {%endifequal%}
                 {%ifequal talk.status 1%}
+                <a href="/talks/inform/{{talk.id}}/" class="btn btn-warning">{%trans "inform users (email)"%}</a>
                 <a href="/talks/unpublish/{{talk.id}}/" class="btn btn-warning">{%trans "not ready"%}</a>
                 {%endifequal%}
             {%endifequal%}

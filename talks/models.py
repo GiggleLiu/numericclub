@@ -3,9 +3,13 @@ from django.db import models
 from django.utils import timezone
 from django.core.cache import cache
 from numericclub.utils import get_readme_html
+if "mailer" in settings.INSTALLED_APPS:
+    from mailer import send_mail
+else:
+    from django.core.mail import send_mail
 
 from topics.models import Topic
-from being.models import getadmin
+from being.models import getadmin, AdvancedUser
 
 class Talk(models.Model):
     class Meta:
@@ -28,6 +32,44 @@ class Talk(models.Model):
     def link(self):
         return '<a href="/talks/%d/">%s</a>'%(self.id, self.title)
 
+
+    def inform(self, user_list=None):
+        '''
+        send email to user list.
+        '''
+        if user_list is None:
+            user_list = AdvancedUser.objects.all()
+        title = 'Numeric Club - New Talk: %s'%self.title
+
+        for user in user_list:
+            msg = '''Dear %s:
+
+We have a new talk ready,
+
+Title:       %s
+On Topic:    %s
+Github Link: %s
+Date Time:   %s
+Speaker:     %s
+Location:    %s
+
+Welcome for your paticipation, and don't forget to bring your laptops!
+
+Yours,
+Numeric Club
+'''%(user.truename, self.title, self.topic.text, self.github_url, self.talk_date, self.user.truename, self.location)
+
+            #email = EmailMessage(title, msg, to=[user.email])
+            #email.send()
+            print('sending %s'%user.email, msg)
+
+            send_mail(title, msg,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [user.email],
+                    fail_silently=False,
+            )
+
+# TODO: payments
 
 def get_current_talk():
     ready = Talk.objects.filter(status=1)
@@ -54,5 +96,3 @@ def headercontent4talk(talk, reload=False):
         res = get_readme_html(talk.github_url)
         cache.set(cache_id, res, 600)
     return res
-
-# TODO: payments
