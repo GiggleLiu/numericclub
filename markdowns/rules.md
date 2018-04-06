@@ -36,6 +36,7 @@ Texts with <span class="bg-success">background like this</span> must not be viol
 * drink coffee-cola.
 
 ### Useful Links
+* [How to use Git](http://rogerdudler.github.io/git-guide/)
 * [How to setup online jupyter notebook with colab](/help/colab/)
 * [How to setup python environment](/help/python_setup/)
 * [How to setup julia environment](/help/julia_setup/)

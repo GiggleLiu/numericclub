@@ -49,18 +49,27 @@ class Talk(models.Model):
 
 We have a new talk ready,
 
-Title:       %s [ http://num.v2nobel.com/talks/%d/ ]
-On Topic:    %s
-Github Link: %s
-Date Time:   %s
-Speaker:     %s
-Location:    %s
+%s
+http://num.v2nobel.com/talks/%d/
+
+On Topic:
+%s
+
+Github Repo:
+%s
+
+Location:
+%s
+
+Date Time:\t%s
+Speaker:\t%s
+
 
 Welcome for your paticipation, and don't forget to bring your laptops!
 
 Yours,
 Numeric Club
-'''%(user.truename, self.title, self.id, self.topic.text, self.github_url, self.talk_date, self.user.truename, self.location)
+'''%(user.truename, self.title, self.id, self.topic.text, self.github_url, self.location, self.talk_date.strftime("%Y-%m-%d %H:%M"), self.user.truename)
 
             mails.append((title, msg, settings.DEFAULT_FROM_EMAIL, [user.email]))
 
