@@ -46,10 +46,6 @@ def login(request):
     return render_to_response('index.html', context)
 
 
-def register_success(request):
-    context = RequestContext(request)
-    return render_to_response('success.html', {'content': 'succeed!'}, context)
-
 def register(request):
     # Like before, get the request's context.
     if request.method == 'GET':
@@ -71,7 +67,7 @@ def register(request):
             request.session['user_id'] = user.id
 
             # Update our variable to tell the template registration was successful.
-            return HttpResponseRedirect('/being/register_success/')
+            return render(request, 'success.html', {'content': 'register completed!'})
 
         # Invalid form or forms - mistakes or something else?
         # Print problems to the terminal.

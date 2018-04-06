@@ -37,4 +37,5 @@ Texts with <span class="bg-success">background like this</span> must not be viol
 
 ### Useful Links
 * [How to setup online jupyter notebook with colab](/help/colab/)
-* [How to setup local python environment](/help/python_setup/)
+* [How to setup python environment](/help/python_setup/)
+* [How to setup julia environment](/help/julia_setup/)

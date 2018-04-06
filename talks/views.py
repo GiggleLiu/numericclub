@@ -131,7 +131,7 @@ def talk_inform(request, pk):
     talk = Talk.objects.get(pk=pk)
     if request.user == talk.user:
         talk.inform()
-        return HttpResponseRedirect('/talks/%d/'%pk)
+        return render(request, 'success.html', {'content': 'informed all users successfully!'})
     else:
         return render(request, 'error.html',
             {'error': 'You are not the owner to this talk!'},)

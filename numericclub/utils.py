@@ -13,9 +13,13 @@ def get_readme(url):
     readme = urllib.request.urlopen(readme_url)
     content =  readme.read().decode(readme.headers.get_content_charset())
 
-    # fix url
-    pattern = re.compile(r'\!\[(.*?)\]\(((?!https).*?)\)', re.MULTILINE)
+    # fix image url
+    pattern = re.compile(r'\!\[(.*?)\]\(/?((?!http).*?)\)', re.MULTILINE)
     content_ = re.sub(pattern, r'![\1](%s\2)'%base_url, content)
+    # fix link url
+    base_url_link = os.path.join(url, 'blob/master/')
+    pattern = re.compile(r'([^!])\[(.*?)\]\(/?((?!http).*?)\)', re.MULTILINE)
+    content_ = re.sub(pattern, r'\1[\2](%s\3)'%base_url_link, content_)
     return content_
 
 def md2html(text):

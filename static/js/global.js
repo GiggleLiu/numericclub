@@ -19,7 +19,7 @@ function showlatex() {
     head.appendChild(script);
 }
 $(document).ready(function(){
-    showlatex();
+    //showlatex();
 	$(".trigger").click(function() {
 	   	if($("#"+this.id+'-content').hasClass("hide")){
 	   		$("#"+this.id+'-content').removeClass("hide");
@@ -44,6 +44,11 @@ $(document).ready(function(){
 		$(".modal").modal('hide');
 	
 	});
+    $('.button').click(function(){
+        $('.button').click(function(e) {
+        e.preventDefault();
+    });
+});
 
 });
 function isurl(url){
