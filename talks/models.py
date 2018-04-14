@@ -68,7 +68,7 @@ wifi:
 Date Time:\t%s
 Speaker:\t%s
 
-Bring your laptops, enjoy the coding!
+Setup the programming environment, bring your laptops, and enjoy the coding!
 
 Yours,
 Numeric Club

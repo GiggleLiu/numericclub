@@ -23,7 +23,8 @@ knock the door of Room 812 (Mr. Wang)/824 (Mr. Liu) to ask for help, if no respo
 1. It is recommended to upload your slides to github. For privacy concern, you may want to delete the **introduction & payment** page before uploading.
 
 ### For Participants
-* <span class="bg-success">bring your computers.</span>
+* <span class="bg-success">bring your computers</span>.
+* <span class="bg-success">setup the environment</span> according to setup requirements of the talk.
 
 ### <span class="text-danger">Important</span>
 * If you take part in a talk, you admit to follow the above procedure. Unless you can prove yourself as an invited participant that have no time for prepairation.
