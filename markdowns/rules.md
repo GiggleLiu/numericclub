@@ -10,12 +10,12 @@
 push it to [github](https://github.com/), add its github url (e.g. `https://github.com/GiggleLiu/marburg`) to your talk,
 5. when, your talk is ready (<span class="bg-success">**github link**</span> under your topic should not be empty), click <a href="#" class="btn btn-warning">ready</a> under your talk to make it appear in the [main page of numeric club](/),
 
-6. after your talk has been published, it will show on the , you can click <a href="#" class="btn btn-warning">inform users (email)</a> under your talk to <span class="bg-success">inform all numeric club registered users at least 48 hours before</span> your talk starts,
-7. Download this **self introduction & payment** [ppt](/static/other/intro.pptx)/[pdf](/static/other/intro.pdf) page, modify it, and make it the last page of your presentation or just transform it into an image and insert into your github `README.md`.
+6. after your talk has been published, it will show on the index, you can click <a href="#" class="btn btn-warning">inform users (email)</a> under your talk to <span class="bg-success">inform all numeric club registered users at least 48 hours before</span> your talk starts,
+7. put a **self introduction & payment** page like [ppt](/static/other/intro.pptx)/[pdf](/static/other/intro.pdf) page into your presentation or just transform it into an image and insert into your github `README.md`.
 
 #### Stage 2: Offline Talk
 1. setup your computer before the talk. If the Room is closed,
-knock the door of Room 812 (Mr. Wang)/828 (Mr. Meng) to ask for help, if no response, knock harder.
+knock the door of Room 812 (Mr. Wang)/824 (Mr. Liu) to ask for help, if no response, knock harder.
 2. <span class="bg-success">give a talk</span>
 3. if next speaker is not decided, decide next speaker.
 

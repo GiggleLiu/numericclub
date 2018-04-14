@@ -47,7 +47,7 @@ class Talk(models.Model):
                 continue
             msg = '''Dear %s:
 
-We have a new talk ready,
+A new talk is ready,
 
 %s
 http://num.v2nobel.com/talks/%d/
@@ -61,11 +61,14 @@ Github Repo:
 Location:
 %s
 
+wifi:
+[eduroam] is available.
+[iop-guest], you need to ask the sponsor to access it.
+
 Date Time:\t%s
 Speaker:\t%s
 
-
-Welcome for your paticipation, and don't forget to bring your laptops!
+Bring your laptops, enjoy the coding!
 
 Yours,
 Numeric Club
