@@ -17,6 +17,7 @@
 
 ## Recent Highlights
 
+* **Jin-Guo Liu, Lei Wang**, *Differentiable Learning of Quantum Circuit Born Machine *, [1804.04168](https://arxiv.org/abs/1804.04168) 
 * **Shuo-Hui Li, Lei Wang**, *Neural Network Renormalization Group*, [1802.02840](https://arxiv.org/abs/1802.02840) 
 * **Zhao-Yu Han, Jun Wang, Heng Fan, Lei Wang, Pan Zhang**, *Unsupervised Generative Modeling Using Matrix Product States*, [1709.01662](https://arxiv.org/abs/1709.01662)
 * **Wei Tang, Lei Chen, Wei Li, X. C. Xie, Hong-Hao Tu, Lei Wang**, *Universal Boundary Entropies in Conformal Field Theory: A Quantum Monte  Carlo Study*, [1708.04022](https://arxiv.org/abs/1708.04022) 
