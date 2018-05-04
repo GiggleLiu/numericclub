@@ -79,7 +79,7 @@ Numeric Club
         #print('sending to %s'%([mail[-1][0] for mail in mails],))
         print('sending to %s'%(user_list,))
         #send_mass_mail(mails)
-        send_mail(title, msg, settings.DEFAULT_FROM_EMAIL, user_list)
+        send_mail(title, msg, settings.DEFAULT_FROM_EMAIL, [user.email for user in user_list])
 
 # TODO: payments
 
