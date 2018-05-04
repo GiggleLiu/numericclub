@@ -4,9 +4,9 @@ from django.utils import timezone
 from django.core.cache import cache
 from numericclub.utils import get_readme_html
 if "mailer" in settings.INSTALLED_APPS:
-    from mailer import send_mass_mail
+    from mailer import send_mass_mail, send_mail
 else:
-    from django.core.mail import send_mass_mail
+    from django.core.mail import send_mass_mail, send_mail
 
 from topics.models import Topic
 from being.models import getadmin, AdvancedUser
@@ -45,7 +45,7 @@ class Talk(models.Model):
         for user in user_list:
             if user.email in settings.EMAIL_BLOCK_LIST:
                 continue
-            msg = '''Dear %s:
+            msg = '''Dear User:
 
 A new talk is ready,
 
@@ -72,12 +72,14 @@ Setup the programming environment, bring your laptops, and enjoy the coding!
 
 Yours,
 Numeric Club
-'''%(user.truename, self.title, self.id, self.topic.text, self.github_url, self.location, self.talk_date.strftime("%Y-%m-%d %H:%M"), self.user.truename)
+'''%(self.title, self.id, self.topic.text, self.github_url, self.location, self.talk_date.strftime("%Y-%m-%d %H:%M"), self.user.truename)
 
-            mails.append((title, msg, settings.DEFAULT_FROM_EMAIL, [user.email]))
+            #mails.append((title, msg, settings.DEFAULT_FROM_EMAIL, [user.email]))
 
-        print('sending to %s'%([mail[-1][0] for mail in mails],))
-        send_mass_mail(mails)
+        #print('sending to %s'%([mail[-1][0] for mail in mails],))
+        print('sending to %s'%(user_list,))
+        #send_mass_mail(mails)
+        send_mail(title, msg, settings.DEFAULT_FROM_EMAIL, user_list)
 
 # TODO: payments
 
