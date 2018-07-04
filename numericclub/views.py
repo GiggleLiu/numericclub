@@ -9,6 +9,8 @@ def help(request, page):
         template = 'headercontent.html'
         if page == 'rules':
             template = 'rules_template.html'
+        elif page == 'treasure':
+            template = 'treasure_template.html'
         return render(request, template, {'header':header, 'content':content})
     else:
         return render(request, 'error.html', context={'error':'Page not found!'})
