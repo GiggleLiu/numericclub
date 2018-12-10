@@ -1,2 +1,2 @@
 #!/bin/bash
-nohup python manage.py runserver 172.96.192.67:80&
+nohup python manage.py runserver 0.0.0.0:80&
